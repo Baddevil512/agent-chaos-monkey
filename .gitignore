@@ -1,0 +1,34 @@
+# Environments and Credentials
+.env
+*.env
+!.env.example
+
+# Client Lead Output Directory & Deduplication Memory
+bot_generated_leads/
+reports/
+scanned_repos.json
+
+# Python cache & bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments & IDE
+.venv/
+venv/
+ENV/
+env/
+.vscode/
+.idea/
+
+# Distribution & Build
+build/
+dist/
+*.egg-info/
+
+lead_hunter_bot.py
+scanned_repos.json
