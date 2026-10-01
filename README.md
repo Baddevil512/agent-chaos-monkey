@@ -46,6 +46,7 @@ Because LLM agents re-send full conversation history and prompt context on every
 agent-chaos-monkey/
 ├── chaos_engine/             # Core Middleware Package
 │   ├── __init__.py           # Package exports
+│   ├── ast_scanner.py        # Static AST Code Scanner CLI & engine
 │   ├── config.py             # Fault types & financial leak settings
 │   ├── exceptions.py         # Custom chaos exceptions
 │   ├── decorator.py          # @inject_chaos decorator middleware
@@ -56,10 +57,10 @@ agent-chaos-monkey/
 ├── examples/
 │   └── test_refund_agent.py  # Zero-API-key sandbox demo
 ├── tests/
+│   ├── test_ast_scanner.py   # AST scanner unit tests
 │   ├── test_decorator.py     # Decorator unit tests
 │   ├── test_telemetry.py     # Telemetry & scoring unit tests
 │   └── test_reporter.py      # HTML reporter unit tests
-├── lead_hunter_bot.py        # Autonomous GitHub scanner & Discord lead bot
 ├── .env.example              # Environment variables template
 ├── .gitignore                # Security exclusion rules
 ├── requirements.txt          # Python dependencies
@@ -97,6 +98,32 @@ except Exception as e:
 report_path = generate_html_report(output_filepath="reports/resilience_audit.html")
 print(f"Audit Report generated at: {report_path}")
 ```
+
+---
+
+## 🔍 Static AST Code Scanner (`python -m chaos_engine.ast_scanner`)
+
+Detect missing circuit breakers and unprotected `@tool` handlers in your agent codebase *statically* without executing code or making API calls.
+
+### CLI Usage
+
+```bash
+# Scan current directory or specific target folder/file
+python -m chaos_engine.ast_scanner ./src
+
+# Scan and generate an Executive HTML Scorecard Report
+python -m chaos_engine.ast_scanner ./src --report --output reports/ast_scorecard.html
+```
+
+### What it Detects:
+
+1. **CrewAI `Agent()` Missing Circuit Breakers**:
+   - Flags `Agent()` initializations missing `max_iter` or `max_execution_time`.
+   - Elevates severity to **CRITICAL** if `allow_delegation=True` (preventing infinite delegation loop cascades).
+2. **Unprotected `@tool` Functions**:
+   - Flags `@tool` handlers lacking `try-except` blocks against network, HTTP 502, or JSON parsing errors.
+3. **Resilience Score (0 to 100)**:
+   - Computes a static health score based on severity weights.
 
 ---
 
