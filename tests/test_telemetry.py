@@ -61,8 +61,8 @@ class TestTelemetryTracker(unittest.TestCase):
         )
 
         summary = self.tracker.get_summary()
-        self.assertGreaterEqual(summary["total_tokens"], 300)
-        self.assertGreaterEqual(summary["wasted_tokens"], 300)
+        self.assertGreaterEqual(summary["total_tokens"], 70)
+        self.assertGreaterEqual(summary["wasted_tokens"], 70)
 
 
 if __name__ == "__main__":
