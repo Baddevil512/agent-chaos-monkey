@@ -1,7 +1,8 @@
 """
 Discord Webhook Alert Dispatcher for Agentic Chaos Monkey
 Reads OUTREACH_TARGETS.md (or receives targets list) and dispatches clean, rich Discord embed cards
-with 1-click pre-filled live cloud scanner links and ready-to-copy founder pitches.
+with 1-click pre-filled live cloud scanner links, direct vulnerable file links, 1-click GitHub Issue creation links,
+and ready-to-copy founder pitches.
 """
 
 import os
@@ -9,6 +10,7 @@ import sys
 import time
 import re
 import json
+import urllib.parse
 import requests
 from datetime import datetime, timezone
 from dotenv import load_dotenv
@@ -52,18 +54,45 @@ def parse_outreach_targets_md(filepath: str = "OUTREACH_TARGETS.md") -> list:
             link_match = re.search(r'1-Click Live Scanner Link\*\*: \[([^\]]+)\]', block)
             one_click = link_match.group(1) if link_match else f"https://baddevil512.github.io/agent-chaos-monkey/?repo={repo_name}"
 
-            # Extract Top Findings
+            # Extract Top Findings & File/Line details
             findings = []
+            first_file_path = ""
+            first_line_num = ""
+
             findings_section = re.search(r'#### Top Findings:\s*\n(.*?)(?=\n####|\Z)', block, re.DOTALL)
             if findings_section:
                 findings_lines = findings_section.group(1).strip().split('\n')
                 for line in findings_lines:
                     if line.strip().startswith('- **['):
-                        findings.append(line.strip().lstrip('- ').strip())
+                        finding_str = line.strip().lstrip('- ').strip()
+                        findings.append(finding_str)
+
+                        # Extract first file path and line number for direct link
+                        if not first_file_path:
+                            file_line_match = re.search(r'at `([^:]+):(\d+)`', finding_str)
+                            if file_line_match:
+                                first_file_path = file_line_match.group(1)
+                                first_line_num = file_line_match.group(2)
 
             # Extract Pitch block
             pitch_match = re.search(r'```markdown\s*\n(.*?)\n```', block, re.DOTALL)
             pitch_text = pitch_match.group(1).strip() if pitch_match else ""
+
+            # Direct vulnerable file URL
+            if first_file_path and first_line_num:
+                vulnerable_file_url = f"https://github.com/{repo_name}/blob/main/{first_file_path}#L{first_line_num}"
+            elif first_file_path:
+                vulnerable_file_url = f"https://github.com/{repo_name}/blob/main/{first_file_path}"
+            else:
+                vulnerable_file_url = html_url
+
+            # Short concise pre-filled GitHub Issue URL
+            short_title = urllib.parse.quote("Reliability Advisory: Potential infinite retry loop & missing circuit breakers")
+            short_body = urllib.parse.quote(
+                f"Hey team! We ran a static AST audit on `{repo_name}` and identified potential infinite loops and missing circuit breakers (`max_iter`).\n\n"
+                f"⚡ View 1-Click Interactive Cloud Report:\n{one_click}"
+            )
+            create_issue_url = f"https://github.com/{repo_name}/issues/new?title={short_title}&body={short_body}"
 
             targets.append({
                 "repo_name": repo_name,
@@ -72,6 +101,8 @@ def parse_outreach_targets_md(filepath: str = "OUTREACH_TARGETS.md") -> list:
                 "score": score,
                 "grade": grade,
                 "one_click": one_click,
+                "vulnerable_file_url": vulnerable_file_url,
+                "create_issue_url": create_issue_url,
                 "findings": findings,
                 "pitch": pitch_text
             })
@@ -92,6 +123,8 @@ def send_embed_to_discord(target: dict) -> bool:
     score = target["score"]
     grade = target["grade"]
     one_click = target["one_click"]
+    vulnerable_file_url = target.get("vulnerable_file_url", html_url)
+    create_issue_url = target.get("create_issue_url", f"https://github.com/{repo_name}/issues/new")
     findings = target.get("findings", [])
     pitch = target.get("pitch", "")
 
@@ -106,10 +139,16 @@ def send_embed_to_discord(target: dict) -> bool:
     findings_text = "\n".join([f"• {f}" for f in findings[:3]]) if findings else "• Code fault surface issues detected."
 
     # Discord field limit is 1024 chars
-    if len(pitch) > 950:
-        pitch_codeblock = f"```markdown\n{pitch[:900]}...\n[Truncated for length]\n```"
+    if len(pitch) > 600:
+        pitch_codeblock = f"```markdown\n{pitch[:550]}...\n```"
     else:
         pitch_codeblock = f"```markdown\n{pitch}\n```"
+
+    action_links_text = (
+        f"👉 [Open Vulnerable File]({vulnerable_file_url})\n"
+        f"⚡ [Create GitHub Issue (1-Click)]({create_issue_url})\n"
+        f"🌐 [Run Live Cloud Scanner]({one_click})"
+    )
 
     payload = {
         "username": "Agentic Chaos Monkey Lead Bot 🐒⚡",
@@ -126,13 +165,13 @@ def send_embed_to_discord(target: dict) -> bool:
                         "inline": True
                     },
                     {
-                        "name": "⚡ 1-Click Live Cloud Scanner Link",
-                        "value": f"👉 [**Run Instant Cloud Scan for {repo_name}**]({one_click})",
+                        "name": "🛡️ Top AST Vulnerabilities",
+                        "value": findings_text,
                         "inline": False
                     },
                     {
-                        "name": "🛡️ Top AST Vulnerabilities",
-                        "value": findings_text,
+                        "name": "🚀 Quick Action Links",
+                        "value": action_links_text,
                         "inline": False
                     },
                     {
@@ -149,17 +188,21 @@ def send_embed_to_discord(target: dict) -> bool:
         ]
     }
 
-    try:
-        resp = requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=10)
-        if resp.status_code in (200, 204):
-            print(f"  ✅ Sent Discord notification for {repo_name}")
-            return True
-        else:
-            print(f"  ⚠️ Failed to send Discord notification for {repo_name} (HTTP {resp.status_code}): {resp.text[:100]}")
+    for attempt in range(3):
+        try:
+            resp = requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=10)
+            if resp.status_code in (200, 204):
+                print(f"  ✅ Sent Discord notification for {repo_name}")
+                return True
+            else:
+                print(f"  ⚠️ Failed to send Discord notification for {repo_name} (HTTP {resp.status_code}): {resp.text[:150]}")
+                return False
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(2)
+                continue
+            print(f"  ❌ Error sending to Discord for {repo_name}: {e}")
             return False
-    except Exception as e:
-        print(f"  ❌ Error sending to Discord for {repo_name}: {e}")
-        return False
 
 def dispatch_all_targets(filepath: str = "OUTREACH_TARGETS.md"):
     """Reads OUTREACH_TARGETS.md and sends all targets to Discord with a 1.5s delay."""
