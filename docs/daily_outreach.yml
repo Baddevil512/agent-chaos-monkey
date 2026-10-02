@@ -1,0 +1,42 @@
+# Daily Automated B2B Lead Hunter GitHub Actions Workflow
+# Save this file as `.github/workflows/daily_outreach.yml` in GitHub Web UI if your local token lacks workflow scope.
+
+name: Daily Automated B2B Lead Hunter & Discord Notifications
+
+on:
+  schedule:
+    # Runs daily at 03:30 UTC (9:00 AM IST)
+    - cron: '30 3 * * *'
+  workflow_dispatch: # Allows manual 1-click trigger from GitHub Actions tab
+
+jobs:
+  outreach-hunt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv
+
+      - name: Run B2B Outreach Hunter & Dispatch Discord Alerts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1554958090909253652/QYzvHC1yfBnsm-ztyS_qNStcn2NyunMTQxulMCwj_v7HmMoSUgk8HM_wE7Nr90iSJ62e' }}
+        run: |
+          python outreach_hunter.py
+
+      - name: Commit and Push Updated OUTREACH_TARGETS.md
+        run: |
+          git config --global user.name "Agentic Chaos Monkey Bot"
+          git config --global user.email "bot@agent-chaos-monkey.internal"
+          git add OUTREACH_TARGETS.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update OUTREACH_TARGETS.md [skip ci]" && git push)
