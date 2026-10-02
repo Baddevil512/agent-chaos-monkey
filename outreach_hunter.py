@@ -286,5 +286,12 @@ def main():
     top_10 = qualified_targets[:10]
     build_outreach_targets_md(top_10)
 
+    # Automatically dispatch to Discord webhook if configured
+    try:
+        from send_to_discord import dispatch_all_targets
+        dispatch_all_targets()
+    except Exception as e:
+        print(f"⚠️ Error automatically dispatching Discord notifications: {e}")
+
 if __name__ == "__main__":
     main()
