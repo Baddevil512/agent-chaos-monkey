@@ -621,6 +621,22 @@ def parse_user_payload(raw_input):
             downloadAnchor.click();
             downloadAnchor.remove();
         }
+
+        // Auto-run scanner if ?repo= query parameter is present
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let repoParam = urlParams.get('repo');
+            if (repoParam) {
+                repoParam = repoParam.trim();
+                let fullUrl = repoParam;
+                if (!fullUrl.startsWith('http://') && !fullUrl.startsWith('https://')) {
+                    fullUrl = 'https://github.com/' + repoParam.replace(/^\/+/, '');
+                }
+                switchTab('repo');
+                document.getElementById('repo-url-input').value = fullUrl;
+                runRepoScan();
+            }
+        });
     </script>
 </body>
 </html>
