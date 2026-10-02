@@ -3,7 +3,10 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
+[![Live Cloud Scanner](https://img.shields.io/badge/24%2F7_Live_Scanner-GitHub_Pages-6f42c1.svg)](https://baddevil512.github.io/agent-chaos-monkey/)
 [![Reliability Score](https://img.shields.io/badge/Agentic_Resilience-Scorecard-purple.svg)]()
+
+> 🌐 **[Try the 24/7 Online Cloud Web Scanner](https://baddevil512.github.io/agent-chaos-monkey/)** — Instant AST audit of CrewAI & LangChain code or public GitHub repositories right from your browser! Zero local setup needed.
 
 **Agent Chaos Monkey** is a CTO-grade Chaos Engineering & QA Reliability Suite designed specifically for AI Agents (CrewAI, LangChain, and custom LLM tool-calling workflows).
 

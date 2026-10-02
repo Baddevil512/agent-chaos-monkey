@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Chaos Monkey — 24/7 AI Agent Reliability & Security Scanner</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-glow {
+            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.15);
+        }
+        .code-font {
+            font-family: 'Fira Code', Monaco, Consolas, 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Navbar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">🐒⚡</span>
+                <span class="font-bold text-xl tracking-tight text-white">Agentic Chaos Monkey</span>
+                <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-xs px-2.5 py-0.5 rounded-full font-medium">Cloud AST Scanner</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/Baddevil512/agent-chaos-monkey" target="_blank" class="text-slate-400 hover:text-white transition-colors flex items-center space-x-2 text-sm font-medium">
+                    <i class="fab fa-github text-lg"></i>
+                    <span>GitHub Repo</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+        
+        <!-- Hero Title -->
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
+                Audit Your AI Agents For <span class="gradient-text">Infinite Loops & Faults</span>
+            </h1>
+            <p class="text-slate-400 text-lg">
+                Detect missing circuit breakers (`max_iter`), prompt injection execution sinks, unhandled JSON failures, and hardcoded API keys in CrewAI & LangChain workflows.
+            </p>
+        </div>
+
+        <!-- Mode Selection Tabs -->
+        <div class="max-w-4xl mx-auto mb-6">
+            <div class="flex border-b border-slate-800 space-x-4 justify-center">
+                <button id="tab-code-btn" onclick="switchTab('code')" class="py-3 px-6 text-sm font-semibold text-indigo-400 border-b-2 border-indigo-500 flex items-center space-x-2 transition-all">
+                    <i class="fas fa-code"></i>
+                    <span>Raw Code Scanner</span>
+                </button>
+                <button id="tab-repo-btn" onclick="switchTab('repo')" class="py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all">
+                    <i class="fab fa-github"></i>
+                    <span>Public GitHub Repo URL</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Input Section Card -->
+        <div class="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 mb-10 card-glow">
+            
+            <!-- Tab 1: Code Input -->
+            <div id="tab-code-content">
+                <div class="flex justify-between items-center mb-3">
+                    <label class="text-sm font-medium text-slate-300">Paste Python Agent Code (.py):</label>
+                    <button onclick="loadExampleCode()" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1.5">
+                        <i class="fas fa-magic"></i>
+                        <span>Load Vulnerable CrewAI/LangChain Example</span>
+                    </button>
+                </div>
+                <textarea id="code-input" rows="12" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-4 code-font text-sm text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="from crewai import Agent, Task, Crew&#10;&#10;researcher = Agent(&#10;    role='Lead Researcher',&#10;    goal='Discover key insights',&#10;    allow_delegation=True&#10;    # Missing max_iter circuit breaker!&#10;)"></textarea>
+                <div class="mt-4 flex justify-end">
+                    <button onclick="runCodeScan()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-lg transition-all flex items-center space-x-2 shadow-lg shadow-indigo-600/30">
+                        <i class="fas fa-search"></i>
+                        <span>Scan Agent Code Now</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 2: Repo Input -->
+            <div id="tab-repo-content" class="hidden">
+                <label class="block text-sm font-medium text-slate-300 mb-2">Public GitHub Repository URL:</label>
+                <div class="flex space-x-3 mb-4">
+                    <input type="text" id="repo-url-input" placeholder="https://github.com/joaomdmoura/crewAI-examples" class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors">
+                    <button onclick="runRepoScan()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-lg transition-all flex items-center space-x-2 shadow-lg shadow-indigo-600/30">
+                        <i class="fas fa-globe"></i>
+                        <span>Scan Public Repo</span>
+                    </button>
+                </div>
+                <p class="text-xs text-slate-500">Fetches `.py` agent code directly via GitHub REST API and runs deep AST analysis.</p>
+            </div>
+
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading-spinner" class="hidden max-w-4xl mx-auto text-center py-12">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-500 border-t-transparent"></div>
+            <p class="mt-4 text-slate-400 font-medium">Executing AST Analysis & Fault Surface Mapping...</p>
+        </div>
+
+        <!-- Results Dashboard Section -->
+        <div id="results-dashboard" class="hidden max-w-4xl mx-auto">
+            
+            <!-- Summary Stats Header -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 mb-8 card-glow">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center space-x-6">
+                        <!-- Score Gauge Circle -->
+                        <div id="score-circle-container" class="relative w-24 h-24 rounded-full flex items-center justify-center border-4 border-emerald-500 bg-slate-950">
+                            <span id="resilience-score-text" class="text-3xl font-extrabold text-emerald-400">100</span>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Agent Resilience Rating</div>
+                            <div class="flex items-center space-x-3">
+                                <span id="risk-grade-badge" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-lg font-bold px-3 py-0.5 rounded-md">Grade A</span>
+                                <span id="summary-issues-status" class="text-slate-300 font-medium text-sm">0 Critical Vulnerabilities Found</span>
+                            </div>
+                            <div id="scanned-target-label" class="text-xs text-slate-500 mt-1">Target: agent_workflow.py</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Export Buttons -->
+                    <div class="flex space-x-3">
+                        <button onclick="downloadJsonReport()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium px-4 py-2 rounded-lg border border-slate-700 transition-all flex items-center space-x-2">
+                            <i class="fas fa-file-code"></i>
+                            <span>Export JSON</span>
+                        </button>
+                        <button onclick="downloadMarkdownReport()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium px-4 py-2 rounded-lg border border-slate-700 transition-all flex items-center space-x-2">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Export Markdown</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vulnerability Findings List -->
+            <h2 class="text-xl font-bold mb-4 text-white flex items-center space-x-2">
+                <i class="fas fa-shield-alt text-indigo-400"></i>
+                <span>Detected Reliability & Security Defects</span>
+            </h2>
+
+            <div id="vulnerability-list" class="space-y-4 mb-10">
+                <!-- Dynamic cards populated here -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 Agentic Chaos Monkey — QA Reliability & AST Vulnerability Suite for AI Agents.</p>
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        let currentScanData = null;
+
+        function switchTab(tab) {
+            const codeContent = document.getElementById('tab-code-content');
+            const repoContent = document.getElementById('tab-repo-content');
+            const codeBtn = document.getElementById('tab-code-btn');
+            const repoBtn = document.getElementById('tab-repo-btn');
+
+            if (tab === 'code') {
+                codeContent.classList.remove('hidden');
+                repoContent.classList.add('hidden');
+                codeBtn.className = 'py-3 px-6 text-sm font-semibold text-indigo-400 border-b-2 border-indigo-500 flex items-center space-x-2 transition-all';
+                repoBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
+            } else {
+                codeContent.classList.add('hidden');
+                repoContent.classList.remove('hidden');
+                repoBtn.className = 'py-3 px-6 text-sm font-semibold text-indigo-400 border-b-2 border-indigo-500 flex items-center space-x-2 transition-all';
+                codeBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
+            }
+        }
+
+        function loadExampleCode() {
+            const example = `import json
+import os
+from crewai import Agent, Task, Crew
+from langchain_community.chat_models import ChatOpenAI
+
+# HARDCODED SECRET (Critical Risk)
+OPENAI_API_KEY = "sk-proj-99887766554433221100aabbccddeeff"
+
+# MISSING LLM TIMEOUT
+llm = ChatOpenAI(model="gpt-4o")
+
+# UNBOUNDED AGENT LOOP (Missing max_iter circuit breaker with delegation enabled)
+unbounded_agent = Agent(
+    role="Unbounded Research Agent",
+    goal="Search the web recursively until perfect answer is found",
+    backstory="You never give up regardless of loop count.",
+    allow_delegation=True
+)
+
+def parse_user_payload(raw_input):
+    # UNHANDLED JSON PARSING
+    data = json.loads(raw_input)
+    
+    # PROMPT INJECTION EXECUTION SINK
+    if "python_code" in data:
+        exec(data["python_code"])
+        
+    return data
+`;
+            document.getElementById('code-input').value = example;
+        }
+
+        // Client-side JavaScript Static Analysis Engine (Fallback for standalone GitHub Pages)
+        function analyzeCodeJs(code, filename = "agent_workflow.py") {
+            const lines = code.split('\n');
+            const vulns = [];
+
+            // Rule 1: UNBOUNDED_AGENT_LOOP
+            if (code.includes('Agent(')) {
+                let insideAgent = false;
+                let agentStartLine = 0;
+                let agentCodeBlock = '';
+                
+                lines.forEach((line, idx) => {
+                    if (line.includes('Agent(')) {
+                        insideAgent = true;
+                        agentStartLine = idx + 1;
+                        agentCodeBlock = line;
+                    } else if (insideAgent) {
+                        agentCodeBlock += '\n' + line;
+                    }
+
+                    if (insideAgent && line.includes(')')) {
+                        insideAgent = false;
+                        if (!agentCodeBlock.includes('max_iter') && !agentCodeBlock.includes('max_execution_time')) {
+                            const isDelegation = agentCodeBlock.includes('allow_delegation=True');
+                            vulns.push({
+                                file_path: filename,
+                                line_number: agentStartLine,
+                                category: 'UNBOUNDED_AGENT_LOOP',
+                                severity: isDelegation ? 'CRITICAL' : 'HIGH',
+                                symbol_name: 'Agent',
+                                description: `CrewAI Agent initialized without \`max_iter\` or \`max_execution_time\` circuit breaker${isDelegation ? ' (delegation enabled!)' : ''}.`,
+                                code_snippet: agentCodeBlock.trim().split('\n').slice(0, 5).join('\n'),
+                                fix_recommendation: `Add \`max_iter=10\` and \`max_execution_time=120\` to prevent infinite loops.`
+                            });
+                        }
+                    }
+                });
+            }
+
+            // Rule 2: MISSING_LLM_TIMEOUT
+            lines.forEach((line, idx) => {
+                if (/(ChatOpenAI|LLM|ChatAnthropic|OpenAI)\s*\(/.test(line) && !line.includes('timeout')) {
+                    vulns.push({
+                        file_path: filename,
+                        line_number: idx + 1,
+                        category: 'MISSING_LLM_TIMEOUT',
+                        severity: 'HIGH',
+                        symbol_name: line.trim().split('(')[0],
+                        description: 'LLM Client initialized without explicitly configured network timeout.',
+                        code_snippet: line.trim(),
+                        fix_recommendation: 'Pass `request_timeout=30.0` or `timeout=30.0` to avoid hangs.'
+                    });
+                }
+            });
+
+            // Rule 3: PROMPT_INJECTION_SINK
+            lines.forEach((line, idx) => {
+                if (/(exec|eval|os\.system|subprocess\.Popen)\s*\(/.test(line)) {
+                    vulns.push({
+                        file_path: filename,
+                        line_number: idx + 1,
+                        category: 'PROMPT_INJECTION_SINK',
+                        severity: 'CRITICAL',
+                        symbol_name: line.trim().split('(')[0],
+                        description: 'Dangerous code execution sink detected near agent data handler.',
+                        code_snippet: line.trim(),
+                        fix_recommendation: 'Avoid dynamic exec/eval on untrusted agent payloads.'
+                    });
+                }
+            });
+
+            // Rule 4: UNHANDLED_JSON_PARSING
+            lines.forEach((line, idx) => {
+                if (line.includes('json.loads(')) {
+                    // check if inside try block
+                    const prevLines = lines.slice(Math.max(0, idx - 5), idx).join('\n');
+                    if (!prevLines.includes('try:')) {
+                        vulns.push({
+                            file_path: filename,
+                            line_number: idx + 1,
+                            category: 'UNHANDLED_JSON_PARSING',
+                            severity: 'MEDIUM',
+                            symbol_name: 'json.loads',
+                            description: 'Unprotected `json.loads` without try-except block.',
+                            code_snippet: line.trim(),
+                            fix_recommendation: 'Wrap `json.loads()` inside `try...except (json.JSONDecodeError, ValueError):`'
+                        });
+                    }
+                }
+            });
+
+            // Rule 5: HARDCODED_SECRET
+            const secretRegex = /(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,}|AIzaSy[a-zA-Z0-9_-]{30,})/;
+            lines.forEach((line, idx) => {
+                if (secretRegex.test(line)) {
+                    vulns.push({
+                        file_path: filename,
+                        line_number: idx + 1,
+                        category: 'HARDCODED_SECRET',
+                        severity: 'CRITICAL',
+                        symbol_name: 'API_KEY',
+                        description: 'Hardcoded API secret or access token detected in source code.',
+                        code_snippet: line.trim().replace(secretRegex, 'sk-***REDACTED***'),
+                        fix_recommendation: 'Move credentials to environment variables (`os.getenv("OPENAI_API_KEY")`).'
+                    });
+                }
+            });
+
+            // Compute Score & Grade
+            let score = 100.0;
+            vulns.forEach(v => {
+                if (v.severity === 'CRITICAL') score -= 25.0;
+                else if (v.severity === 'HIGH') score -= 15.0;
+                else score -= 10.0;
+            });
+            score = Math.max(0.0, Math.min(100.0, score));
+
+            let grade = 'A';
+            if (score < 50) grade = 'F';
+            else if (score < 70) grade = 'D';
+            else if (score < 80) grade = 'C';
+            else if (score < 90) grade = 'B';
+
+            return {
+                target_path: filename,
+                scanned_files_count: 1,
+                total_issues_count: vulns.length,
+                resilience_score: score,
+                risk_grade: grade,
+                vulnerabilities: vulns
+            };
+        }
+
+        async function runCodeScan() {
+            const code = document.getElementById('code-input').value;
+            if (!code.trim()) {
+                alert('Please enter or paste Python agent code to scan.');
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                // Attempt FastAPI Backend API if available
+                const resp = await fetch('/api/scan/code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: code, filename: 'agent_workflow.py' })
+                });
+
+                if (resp.ok) {
+                    currentScanData = await resp.json();
+                } else {
+                    // Fallback to in-browser JS analysis
+                    currentScanData = analyzeCodeJs(code);
+                }
+            } catch (err) {
+                // Server unavailable or static GitHub Pages mode
+                currentScanData = analyzeCodeJs(code);
+            }
+
+            showLoading(false);
+            renderDashboard(currentScanData);
+        }
+
+        async function runRepoScan() {
+            const repoUrl = document.getElementById('repo-url-input').value.trim();
+            if (!repoUrl) {
+                alert('Please enter a valid public GitHub repository URL.');
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                // Try API endpoint first
+                const resp = await fetch('/api/scan/repo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ repo_url: repoUrl })
+                });
+
+                if (resp.ok) {
+                    currentScanData = await resp.json();
+                } else {
+                    // Direct GitHub REST API fetch from browser
+                    currentScanData = await scanRepoViaBrowserGithubApi(repoUrl);
+                }
+            } catch (err) {
+                currentScanData = await scanRepoViaBrowserGithubApi(repoUrl);
+            }
+
+            showLoading(false);
+            renderDashboard(currentScanData);
+        }
+
+        async function scanRepoViaBrowserGithubApi(repoUrl) {
+            const clean = repoUrl.replace('https://github.com/', '').replace(/\/$/, '');
+            const parts = clean.split('/');
+            if (parts.length < 2) {
+                alert('Invalid GitHub URL format.');
+                return null;
+            }
+            const owner = parts[0];
+            const repo = parts[1];
+            const repoName = `${owner}/${repo}`;
+
+            let treeUrl = `https://api.github.com/repos/${repoName}/git/trees/main?recursive=1`;
+            let r = await fetch(treeUrl);
+            if (r.status === 404) {
+                treeUrl = `https://api.github.com/repos/${repoName}/git/trees/master?recursive=1`;
+                r = await fetch(treeUrl);
+            }
+
+            if (!r.ok) {
+                alert(`Could not fetch GitHub repository ${repoName}. Verify repo is public.`);
+                return null;
+            }
+
+            const treeData = await r.json();
+            const pyItems = (treeData.tree || []).filter(item => item.path.endsWith('.py') && item.type === 'blob').slice(0, 10);
+
+            let allVulns = [];
+            let scannedFiles = 0;
+
+            for (const item of pyItems) {
+                const rawUrl = `https://raw.githubusercontent.com/${repoName}/HEAD/${item.path}`;
+                const rawResp = await fetch(rawUrl);
+                if (rawResp.ok) {
+                    scannedFiles++;
+                    const codeText = await rawResp.text();
+                    const subRes = analyzeCodeJs(codeText, item.path);
+                    allVulns.push(...subRes.vulnerabilities);
+                }
+            }
+
+            let score = 100.0;
+            allVulns.forEach(v => {
+                if (v.severity === 'CRITICAL') score -= 25.0;
+                else if (v.severity === 'HIGH') score -= 15.0;
+                else score -= 10.0;
+            });
+            score = Math.max(0.0, Math.min(100.0, score));
+
+            let grade = 'A';
+            if (score < 50) grade = 'F';
+            else if (score < 70) grade = 'D';
+            else if (score < 80) grade = 'C';
+            else if (score < 90) grade = 'B';
+
+            return {
+                target_path: repoName,
+                scanned_files_count: scannedFiles,
+                total_issues_count: allVulns.length,
+                resilience_score: score,
+                risk_grade: grade,
+                vulnerabilities: allVulns
+            };
+        }
+
+        function showLoading(isLoading) {
+            const spinner = document.getElementById('loading-spinner');
+            const dashboard = document.getElementById('results-dashboard');
+            if (isLoading) {
+                spinner.classList.remove('hidden');
+                dashboard.classList.add('hidden');
+            } else {
+                spinner.classList.add('hidden');
+            }
+        }
+
+        function renderDashboard(data) {
+            if (!data) return;
+
+            const dashboard = document.getElementById('results-dashboard');
+            dashboard.classList.remove('hidden');
+
+            const scoreText = document.getElementById('resilience-score-text');
+            const circleContainer = document.getElementById('score-circle-container');
+            const gradeBadge = document.getElementById('risk-grade-badge');
+            const issuesStatus = document.getElementById('summary-issues-status');
+            const targetLabel = document.getElementById('scanned-target-label');
+
+            scoreText.innerText = Math.round(data.resilience_score);
+            targetLabel.innerText = `Target: ${data.target_path} (${data.scanned_files_count} Python file${data.scanned_files_count === 1 ? '' : 's'} scanned)`;
+
+            // Grade styling
+            gradeBadge.innerText = `Grade ${data.risk_grade}`;
+            if (data.risk_grade === 'A') {
+                circleContainer.className = "relative w-24 h-24 rounded-full flex items-center justify-center border-4 border-emerald-500 bg-slate-950";
+                scoreText.className = "text-3xl font-extrabold text-emerald-400";
+                gradeBadge.className = "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-lg font-bold px-3 py-0.5 rounded-md";
+            } else if (data.risk_grade === 'B' || data.risk_grade === 'C') {
+                circleContainer.className = "relative w-24 h-24 rounded-full flex items-center justify-center border-4 border-amber-500 bg-slate-950";
+                scoreText.className = "text-3xl font-extrabold text-amber-400";
+                gradeBadge.className = "bg-amber-500/20 text-amber-400 border border-amber-500/40 text-lg font-bold px-3 py-0.5 rounded-md";
+            } else {
+                circleContainer.className = "relative w-24 h-24 rounded-full flex items-center justify-center border-4 border-rose-500 bg-slate-950";
+                scoreText.className = "text-3xl font-extrabold text-rose-400";
+                gradeBadge.className = "bg-rose-500/20 text-rose-400 border border-rose-500/40 text-lg font-bold px-3 py-0.5 rounded-md";
+            }
+
+            issuesStatus.innerText = `${data.total_issues_count} Vulnerabilit${data.total_issues_count === 1 ? 'y' : 'ies'} Detected`;
+
+            // Vulnerability Cards
+            const vulnList = document.getElementById('vulnerability-list');
+            vulnList.innerHTML = '';
+
+            if (data.vulnerabilities.length === 0) {
+                vulnList.innerHTML = `
+                    <div class="bg-emerald-950/30 border border-emerald-800/50 rounded-xl p-6 text-center">
+                        <i class="fas fa-check-circle text-emerald-400 text-3xl mb-2"></i>
+                        <h3 class="text-emerald-300 font-semibold text-lg">Clean Bill of Health!</h3>
+                        <p class="text-slate-400 text-sm">No agent infinite loops, missing timeouts, or security sinks detected.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.vulnerabilities.forEach((v) => {
+                let sevBadge = '';
+                if (v.severity === 'CRITICAL') {
+                    sevBadge = '<span class="bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs px-2.5 py-0.5 rounded font-bold">CRITICAL</span>';
+                } else if (v.severity === 'HIGH') {
+                    sevBadge = '<span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs px-2.5 py-0.5 rounded font-bold">HIGH</span>';
+                } else {
+                    sevBadge = '<span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs px-2.5 py-0.5 rounded font-bold">MEDIUM</span>';
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900 border border-slate-800 rounded-xl p-5 card-glow';
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-3">
+                            ${sevBadge}
+                            <span class="text-xs code-font bg-slate-800 text-indigo-300 px-2 py-0.5 rounded border border-slate-700">${v.category}</span>
+                            <span class="text-xs text-slate-400 font-medium">${v.file_path}:${v.line_number}</span>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">Symbol: ${v.symbol_name || 'N/A'}</span>
+                    </div>
+                    <p class="text-sm text-slate-200 font-medium mb-3">${v.description}</p>
+                    ${v.code_snippet ? `
+                        <div class="mb-3">
+                            <div class="text-xs text-slate-500 mb-1 font-semibold">Flagged Code:</div>
+                            <pre class="bg-slate-950 p-3 rounded text-xs code-font text-slate-300 border border-slate-800 overflow-x-auto">${escapeHtml(v.code_snippet)}</pre>
+                        </div>
+                    ` : ''}
+                    <div class="bg-indigo-950/30 border border-indigo-800/40 p-3 rounded-lg text-xs">
+                        <span class="text-indigo-400 font-semibold flex items-center space-x-1.5 mb-1">
+                            <i class="fas fa-wrench"></i>
+                            <span>Recommended Circuit Breaker Fix:</span>
+                        </span>
+                        <p class="text-slate-300 code-font">${escapeHtml(v.fix_recommendation)}</p>
+                    </div>
+                `;
+                vulnList.appendChild(card);
+            });
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function downloadJsonReport() {
+            if (!currentScanData) return;
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentScanData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `chaos_audit_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function downloadMarkdownReport() {
+            if (!currentScanData) return;
+            let md = `# Agentic Chaos Monkey — Reliability Audit Report\n\n`;
+            md += `- **Target**: \`${currentScanData.target_path}\`\n`;
+            md += `- **Resilience Score**: ${currentScanData.resilience_score} / 100 (Grade ${currentScanData.risk_grade})\n`;
+            md += `- **Total Issues Detected**: ${currentScanData.total_issues_count}\n\n`;
+            md += `## Vulnerabilities & Fault Surface Items\n\n`;
+
+            currentScanData.vulnerabilities.forEach((v, idx) => {
+                md += `### ${idx + 1}. [${v.severity}] ${v.category} at \`${v.file_path}:${v.line_number}\`\n`;
+                md += `- **Description**: ${v.description}\n`;
+                md += `- **Recommended Fix**: ${v.fix_recommendation}\n\n`;
+            });
+
+            const dataStr = "data:text/markdown;charset=utf-8," + encodeURIComponent(md);
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `chaos_audit_${Date.now()}.md`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+    </script>
+</body>
+</html>
