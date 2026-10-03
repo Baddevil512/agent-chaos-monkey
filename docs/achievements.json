@@ -6,6 +6,14 @@
   },
   "achievements": [
     {
+      "id": "ach-006",
+      "title": "Root Portfolio Website & ATS Resume Release",
+      "category": "ENGINEERING MILESTONE",
+      "description": "Built and deployed standalone interactive AI Systems Architect portfolio & ATS printable resume.",
+      "proof_link": "https://baddevil512.github.io/",
+      "date": "2026-10-03"
+    },
+    {
       "id": "ach-005",
       "title": "Zero-False-Positive AST Engine Release",
       "category": "SECURITY ENGINE",
