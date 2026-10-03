@@ -1,17 +1,11 @@
-"""
-Outreach Hunter — Automated B2B Lead Generation & Founder Pitch Engine
-Discovers active AI startups on GitHub using agent frameworks (crewai, langgraph, autogen, langchain),
-scans their code using chaos_engine static AST analyzer, identifies high-severity reliability defects,
-and generates OUTREACH_TARGETS.md with pre-filled 1-click live audit links & customized founder outreach pitches.
-"""
-
 import os
 import sys
 import time
+import json
 import requests
 import tempfile
 from datetime import datetime, timezone
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Set
 
 # UTF-8 stdout setup for Windows
 if hasattr(sys.stdout, "reconfigure"):
@@ -27,32 +21,71 @@ HEADERS = {"Accept": "application/vnd.github.v3+json"}
 if GITHUB_TOKEN:
     HEADERS["Authorization"] = f"token {GITHUB_TOKEN}"
 
-# Framework search queries
+CONTACTED_REPOS_FILE = os.path.join(os.path.dirname(__file__), "contacted_repos.json")
+
+# Framework search queries with stars:30..1000
 SEARCH_QUERIES = [
-    "crewai stars:10..1500 language:Python",
-    "langgraph stars:10..1500 language:Python",
-    "autogen stars:10..1500 language:Python",
-    "langchain-agent stars:10..1500 language:Python"
+    '"crewai" language:Python stars:30..1000',
+    '"langgraph" language:Python stars:30..1000',
+    '"autogen" language:Python stars:30..1000',
+    '"mcp-server" language:Python stars:30..1000',
+    '"pydantic-ai" language:Python stars:30..1000'
 ]
 
-EXCLUDE_REPOS = [
+EXCLUDE_REPOS = {
     "baddevil512/agent-chaos-monkey",
     "joaomdmoura/crewai",
     "crewaiinc/crewai",
     "langchain-ai/langgraph",
     "microsoft/autogen"
-]
+}
 
 EXCLUDE_PATH_KEYWORDS = [
     "use-cases/", "use_cases/", "examples/", "samples/",
     "_anti_patterns/", "cookbook/", "templates/", "tutorials/",
     "notebooks/", "docs/", "example/", "sample/", "tutorial/",
-    "tests/", "test/", "benchmarks/", "benchmark/", "test_", "_test.py"
+    "tests/", "test/", "benchmarks/", "benchmark/", "test_", "_test.py",
+    "mock", "dummy"
 ]
 
-def search_github_repos() -> List[Dict[str, Any]]:
+def load_contacted_repos() -> Set[str]:
+    """Load previously contacted/scanned repositories (case-insensitive)."""
+    if os.path.exists(CONTACTED_REPOS_FILE):
+        try:
+            with open(CONTACTED_REPOS_FILE, "r", encoding="utf-8") as f:
+                repos = json.load(f)
+                if isinstance(repos, list):
+                    return {r.strip().lower() for r in repos if isinstance(r, str)}
+        except Exception as e:
+            print(f"⚠️ Error reading {CONTACTED_REPOS_FILE}: {e}")
+    return set()
+
+def save_contacted_repo(repo_full_name: str):
+    """Append a newly processed repository to contacted_repos.json."""
+    current_list = []
+    if os.path.exists(CONTACTED_REPOS_FILE):
+        try:
+            with open(CONTACTED_REPOS_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    current_list = data
+        except Exception:
+            current_list = []
+
+    # Check case-insensitive existence before appending
+    existing_lower = {r.lower() for r in current_list}
+    if repo_full_name.lower() not in existing_lower:
+        current_list.append(repo_full_name)
+        try:
+            with open(CONTACTED_REPOS_FILE, "w", encoding="utf-8") as f:
+                json.dump(current_list, f, indent=2)
+            print(f"💾 Added '{repo_full_name}' to {CONTACTED_REPOS_FILE}")
+        except Exception as e:
+            print(f"⚠️ Error updating {CONTACTED_REPOS_FILE}: {e}")
+
+def search_github_repos(contacted: Set[str]) -> List[Dict[str, Any]]:
     """Search GitHub for active python repos matching target agent frameworks."""
-    print("🔍 Searching GitHub for active AI agent repositories (10 - 1500 stars)...")
+    print("🔍 Searching GitHub for fresh AI agent repositories (30 - 1000 stars)...")
     repos_map = {}
 
     for query in SEARCH_QUERIES:
@@ -61,12 +94,16 @@ def search_github_repos() -> List[Dict[str, Any]]:
             resp = requests.get(url, headers=HEADERS, timeout=15)
             if resp.status_code == 200:
                 items = resp.json().get("items", [])
-                print(f"  Found {len(items)} candidates for query '{query}'")
+                print(f"  Found {len(items)} candidates for query: {query}")
                 for item in items:
                     full_name = item.get("full_name", "")
-                    if full_name and full_name.lower() not in EXCLUDE_REPOS:
-                        if not item.get("archived") and item.get("has_issues", True):
-                            repos_map[full_name] = item
+                    if not full_name:
+                        continue
+                    full_name_lower = full_name.lower()
+                    if full_name_lower in EXCLUDE_REPOS or full_name_lower in contacted:
+                        continue
+                    if not item.get("archived") and item.get("has_issues", True):
+                        repos_map[full_name_lower] = item
             else:
                 print(f"  ⚠️ Search query '{query}' failed with status {resp.status_code}: {resp.text[:100]}")
         except Exception as e:
@@ -74,6 +111,11 @@ def search_github_repos() -> List[Dict[str, Any]]:
         time.sleep(1.5)
 
     return list(repos_map.values())
+
+def is_excluded_path(file_path: str) -> bool:
+    """Check if file path contains benchmark, test, example, mock, or dummy keywords."""
+    path_lower = file_path.lower()
+    return any(kw in path_lower for kw in EXCLUDE_PATH_KEYWORDS)
 
 def analyze_repo(repo_item: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """Fetches top python files from repo and runs AST static analyzer."""
@@ -103,8 +145,8 @@ def analyze_repo(repo_item: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     for item in tree_data:
         path = item.get("path", "")
         if path.endswith(".py") and item.get("type") == "blob":
-            # Skip reference paths
-            if not any(ref in path.lower() for ref in EXCLUDE_PATH_KEYWORDS):
+            # Exclude test, benchmark, example, mock, dummy paths
+            if not is_excluded_path(path):
                 py_files.append(item)
 
     if not py_files:
@@ -137,20 +179,16 @@ def analyze_repo(repo_item: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
         scan_res = scan_directory(tmp_dir)
 
-        # Filter for high/critical vulns
-        critical_high_vulns = [
-            v for v in scan_res.vulnerabilities
-            if v.severity in ("CRITICAL", "HIGH")
-        ]
-
-        if not critical_high_vulns:
-            return None
-
-        # Format vulnerability records
+        # Filter vulnerabilities strictly excluding test/benchmark/example/mock/dummy file paths
         vulns_data = []
         for v in scan_res.vulnerabilities:
             clean_rel_path = v.file_path.replace(tmp_dir, "").lstrip("\\/")
             actual_path = file_mapping.get(clean_rel_path, clean_rel_path.replace("_", "/"))
+            
+            # Double-check file path exclusion
+            if is_excluded_path(actual_path):
+                continue
+
             vulns_data.append({
                 "file_path": actual_path,
                 "line_number": v.line_number,
@@ -160,6 +198,14 @@ def analyze_repo(repo_item: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 "code_snippet": v.code_snippet,
                 "fix_recommendation": v.fix_recommendation
             })
+
+        critical_high_vulns = [
+            v for v in vulns_data
+            if v["severity"] in ("CRITICAL", "HIGH")
+        ]
+
+        if not critical_high_vulns:
+            return None
 
         # Calculate severity priority score
         crit_count = sum(1 for v in vulns_data if v["severity"] == "CRITICAL")
@@ -259,13 +305,20 @@ def build_outreach_targets_md(targets: List[Dict[str, Any]], filepath: str = "OU
 
 def main():
     print("🚀 Starting Agentic Chaos Monkey B2B Outreach Hunter Engine...")
-    candidates = search_github_repos()
-    print(f"📦 Total candidate repositories fetched: {len(candidates)}")
+    contacted = load_contacted_repos()
+    print(f"📋 Loaded {len(contacted)} previously contacted repositories from contacted_repos.json.")
+
+    candidates = search_github_repos(contacted)
+    print(f"📦 Total fresh candidate repositories fetched: {len(candidates)}")
 
     qualified_targets = []
 
     for idx, candidate in enumerate(candidates, 1):
         repo_name = candidate.get("full_name", "")
+        if repo_name.lower() in contacted:
+            print(f"[{idx}/{len(candidates)}] ⏭️ Skipping previously contacted repo: {repo_name}")
+            continue
+
         print(f"[{idx}/{len(candidates)}] Auditing AST fault surface for {repo_name}...")
         
         target_info = analyze_repo(candidate)
@@ -277,22 +330,34 @@ def main():
 
         time.sleep(1.0)
 
-        if len(qualified_targets) >= 10:
-            print("✨ Reached target threshold of 10 qualified repositories!")
+        if len(qualified_targets) >= 5:
+            print("✨ Reached target threshold of 5 brand-new qualified AI agent startups!")
             break
+
+    if not qualified_targets:
+        print("⚠️ No new qualified targets found in this run.")
+        return
 
     # Sort qualified targets by priority (highest critical count first, then lowest resilience score)
     qualified_targets.sort(key=lambda x: (-x["crit_count"], -x["high_count"], x["resilience_score"]))
     
-    top_10 = qualified_targets[:10]
-    build_outreach_targets_md(top_10)
+    top_targets = qualified_targets[:5]
+    build_outreach_targets_md(top_targets)
 
-    # Automatically dispatch to Discord webhook if configured
+    # Automatically dispatch to Discord webhook and update contacted_repos.json for each sent lead
     try:
-        from send_to_discord import dispatch_all_targets
-        dispatch_all_targets()
+        from send_to_discord import send_embed_to_discord, parse_outreach_targets_md
+        parsed_targets = parse_outreach_targets_md("OUTREACH_TARGETS.md")
+        sent_count = 0
+        for t in parsed_targets:
+            if send_embed_to_discord(t):
+                sent_count += 1
+                save_contacted_repo(t["repo_name"])
+            time.sleep(1.5)
+        print(f"✨ Dispatched {sent_count}/{len(parsed_targets)} brand-new lead notifications to Discord!")
     except Exception as e:
         print(f"⚠️ Error automatically dispatching Discord notifications: {e}")
 
 if __name__ == "__main__":
     main()
+

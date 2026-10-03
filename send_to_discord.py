@@ -214,11 +214,14 @@ def dispatch_all_targets(filepath: str = "OUTREACH_TARGETS.md"):
 
     print(f"📦 Found {len(targets)} targets. Dispatching to Discord webhook...")
 
+    from outreach_hunter import save_contacted_repo
+
     sent_count = 0
     for idx, target in enumerate(targets, 1):
         print(f"[{idx}/{len(targets)}] Dispatching {target['repo_name']}...")
         if send_embed_to_discord(target):
             sent_count += 1
+            save_contacted_repo(target['repo_name'])
         time.sleep(1.5)  # Respect Discord rate limit
 
     print(f"\n✨ Done! Successfully sent {sent_count}/{len(targets)} lead cards to Discord.")
