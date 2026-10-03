@@ -70,6 +70,14 @@ class ComprehensiveAgentASTVisitor(ast.NodeVisitor):
         self.has_crewai_import = False
         self.has_langchain_import = False
         self.vulnerabilities: List[Vulnerability] = []
+
+        # Check for client-level timeouts (httpx.AsyncClient(timeout=...), asyncio.wait_for(..., timeout=...))
+        self.has_client_level_timeout = bool(
+            re.search(r'httpx\.(AsyncClient|Client)\s*\([^)]*timeout\s*=', source_code) or
+            re.search(r'asyncio\.wait_for\s*\([^)]*timeout\s*=', source_code) or
+            re.search(r'Client\s*\([^)]*timeout\s*=', source_code)
+        )
+
         self._check_secrets()
 
     def _check_secrets(self):
@@ -181,10 +189,10 @@ class ComprehensiveAgentASTVisitor(ast.NodeVisitor):
                     ))
 
         # --- Rule 2: Missing LLM Timeout & Retry Guards ---
-        llm_providers = ("OpenAI", "ChatOpenAI", "Anthropic", "Client", "Claude", "litellm", "post")
+        llm_providers = ("OpenAI", "ChatOpenAI", "Anthropic", "Client", "AsyncClient", "Claude", "litellm", "post")
         if func_id in llm_providers:
-            # Check requests.post / LLM client instantiation for timeout
-            if "timeout" not in keywords and "request_timeout" not in keywords:
+            # Check requests.post / LLM client instantiation for timeout or client-level timeout
+            if "timeout" not in keywords and "request_timeout" not in keywords and not self.has_client_level_timeout:
                 snippet = self.source_lines[node.lineno - 1].strip() if 0 <= node.lineno - 1 < len(self.source_lines) else f"{func_id}(...)"
                 self.vulnerabilities.append(Vulnerability(
                     file_path=self.file_path,
@@ -227,18 +235,6 @@ class ComprehensiveAgentASTVisitor(ast.NodeVisitor):
                         code_snippet=snippet,
                         fix_recommendation="subprocess.run(['command', 'arg1'], shell=False)"
                     ))
-
-        # --- Rule 4: Unhandled JSON / Tool Output Parsing ---
-        if func_id == "loads" or (isinstance(node.func, ast.Attribute) and node.func.attr == "loads"):
-            # Check if json.loads call is wrapped in a try block
-            in_try = False
-            curr = node
-            # Walk up parents isn't directly supported in std ast without parent pointers, check FunctionDef body
-            snippet = self.source_lines[node.lineno - 1].strip() if 0 <= node.lineno - 1 < len(self.source_lines) else "json.loads(...)"
-            # Heuristic check on line context
-            if "llm" in snippet.lower() or "response" in snippet.lower() or "tool" in snippet.lower() or "output" in snippet.lower() or "result" in snippet.lower():
-                # Verify if current function containing json.loads has try-except
-                pass # FunctionDef handles try check or tool check below
 
         self.generic_visit(node)
 
@@ -312,9 +308,25 @@ def calculate_risk_grade(resilience_score: float) -> str:
         return "F"
 
 
+def is_test_or_benchmark_path(file_path: str) -> bool:
+    """Returns True if file belongs to a test or benchmark suite."""
+    p_lower = file_path.replace("\\", "/").lower()
+    parts = p_lower.split("/")
+    filename = parts[-1]
+    
+    if any(p in ("tests", "test", "benchmarks", "benchmark") for p in parts[:-1]):
+        return True
+    if filename.startswith("test_") or filename.endswith("_test.py") or filename.startswith("benchmark_"):
+        return True
+    return False
+
+
 def scan_file(file_path: str) -> List[Vulnerability]:
     """Scans a single Python file for AST vulnerabilities."""
     if not os.path.isfile(file_path) or not file_path.endswith(".py"):
+        return []
+
+    if is_test_or_benchmark_path(file_path):
         return []
 
     try:

@@ -46,7 +46,8 @@ EXCLUDE_REPOS = [
 EXCLUDE_PATH_KEYWORDS = [
     "use-cases/", "use_cases/", "examples/", "samples/",
     "_anti_patterns/", "cookbook/", "templates/", "tutorials/",
-    "notebooks/", "docs/", "example/", "sample/", "tutorial/"
+    "notebooks/", "docs/", "example/", "sample/", "tutorial/",
+    "tests/", "test/", "benchmarks/", "benchmark/", "test_", "_test.py"
 ]
 
 def search_github_repos() -> List[Dict[str, Any]]:

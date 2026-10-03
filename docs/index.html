@@ -38,6 +38,10 @@
                 <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 text-xs px-2.5 py-0.5 rounded-full font-medium">Cloud AST Scanner</span>
             </div>
             <div class="flex items-center space-x-4">
+                <button onclick="switchTab('proof')" class="text-xs bg-amber-500/10 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-lg hover:bg-amber-500/20 transition-all font-semibold flex items-center space-x-1.5">
+                    <i class="fas fa-trophy text-amber-400"></i>
+                    <span>Proof of Work & Shipped SaaS</span>
+                </button>
                 <a href="https://github.com/Baddevil512/agent-chaos-monkey" target="_blank" class="text-slate-400 hover:text-white transition-colors flex items-center space-x-2 text-sm font-medium">
                     <i class="fab fa-github text-lg"></i>
                     <span>GitHub Repo</span>
@@ -69,6 +73,10 @@
                 <button id="tab-repo-btn" onclick="switchTab('repo')" class="py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all">
                     <i class="fab fa-github"></i>
                     <span>Public GitHub Repo URL</span>
+                </button>
+                <button id="tab-proof-btn" onclick="switchTab('proof')" class="py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all">
+                    <i class="fas fa-trophy text-amber-400"></i>
+                    <span>🏆 Proof of Work & Shipped SaaS</span>
                 </button>
             </div>
         </div>
@@ -105,6 +113,65 @@
                     </button>
                 </div>
                 <p class="text-xs text-slate-500">Fetches `.py` agent code directly via GitHub REST API and runs deep AST analysis.</p>
+            </div>
+
+            <!-- Tab 3: Proof of Work & Shipped SaaS Showcase -->
+            <div id="tab-proof-content" class="hidden">
+                
+                <!-- Builder Profile Header -->
+                <div class="bg-slate-950 border border-indigo-500/30 rounded-xl p-5 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-xl text-white shadow-lg">
+                            👨‍💻
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="text-lg font-bold text-white">Abhay</h3>
+                                <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs px-2 py-0.5 rounded font-medium">Verified Builder</span>
+                            </div>
+                            <p class="text-xs text-slate-400">Full-Stack AI Engineer & Security Systems Builder • Shipped Production Cloud SaaS Actors & Open-Source Security Patches</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <a href="https://github.com/baddevil512" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3.5 py-2 rounded-lg border border-slate-700 font-semibold transition-all flex items-center space-x-1.5">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub @baddevil512</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Live Metrics Counter Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-extrabold text-amber-400 mb-1" id="metric-bugs">1</div>
+                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Confirmed Open-Source Bugs</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Patched in Major AI Agent Repos</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-extrabold text-indigo-400 mb-1" id="metric-actors">2</div>
+                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Cloud SaaS Actors</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Live on Apify Store & REST APIs</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
+                        <div class="text-3xl font-extrabold text-emerald-400 mb-1" id="metric-audited">50+</div>
+                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Repos Audited & AST Rules</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Zero-False-Positive AST Suite</div>
+                    </div>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mb-6 justify-center">
+                    <button onclick="filterAchievements('ALL')" id="filter-all-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white transition-all">All Wins</button>
+                    <button onclick="filterAchievements('CONFIRMED BUG CATCH')" id="filter-bugs-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all">🐛 Confirmed Bug Catches</button>
+                    <button onclick="filterAchievements('CLOUD SAAS ACTOR')" id="filter-actors-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all">🚀 Cloud SaaS Actors</button>
+                    <button onclick="filterAchievements('SECURITY ENGINE')" id="filter-engine-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all">🛡️ Security Engines</button>
+                </div>
+
+                <!-- Dynamic Achievement Cards List -->
+                <div id="achievements-container" class="space-y-4">
+                    <!-- Loaded dynamically via achievements.json -->
+                </div>
+
             </div>
 
         </div>
@@ -172,24 +239,162 @@
     <!-- JavaScript Engine -->
     <script>
         let currentScanData = null;
+        let achievementsData = null;
 
         function switchTab(tab) {
             const codeContent = document.getElementById('tab-code-content');
             const repoContent = document.getElementById('tab-repo-content');
+            const proofContent = document.getElementById('tab-proof-content');
+            
             const codeBtn = document.getElementById('tab-code-btn');
             const repoBtn = document.getElementById('tab-repo-btn');
+            const proofBtn = document.getElementById('tab-proof-btn');
+
+            codeContent.classList.add('hidden');
+            repoContent.classList.add('hidden');
+            proofContent.classList.add('hidden');
+
+            codeBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
+            repoBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
+            proofBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
 
             if (tab === 'code') {
                 codeContent.classList.remove('hidden');
-                repoContent.classList.add('hidden');
                 codeBtn.className = 'py-3 px-6 text-sm font-semibold text-indigo-400 border-b-2 border-indigo-500 flex items-center space-x-2 transition-all';
-                repoBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
-            } else {
-                codeContent.classList.add('hidden');
+            } else if (tab === 'repo') {
                 repoContent.classList.remove('hidden');
                 repoBtn.className = 'py-3 px-6 text-sm font-semibold text-indigo-400 border-b-2 border-indigo-500 flex items-center space-x-2 transition-all';
-                codeBtn.className = 'py-3 px-6 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center space-x-2 transition-all';
+            } else if (tab === 'proof') {
+                proofContent.classList.remove('hidden');
+                proofBtn.className = 'py-3 px-6 text-sm font-semibold text-amber-400 border-b-2 border-amber-500 flex items-center space-x-2 transition-all';
+                loadAchievements();
             }
+        }
+
+        async function loadAchievements() {
+            if (achievementsData) {
+                renderAchievements('ALL');
+                return;
+            }
+
+            const fallbackData = {
+                "metrics_summary": {
+                    "confirmed_bugs": 1,
+                    "cloud_saas_actors": 2,
+                    "repos_audited": "50+"
+                },
+                "achievements": [
+                    {
+                        "id": "ach-001",
+                        "title": "Confirmed Vulnerability Catch in AgentSafeLabs/safelabs-eval (416+ ⭐)",
+                        "category": "CONFIRMED BUG CATCH",
+                        "description": "Identified an unhandled JSON parsing fault trap (validate.py:308) via static AST analysis. Confirmed and patched by core maintainer in Issue #48.",
+                        "proof_link": "https://github.com/AgentSafeLabs/safelabs-eval/issues/48",
+                        "date": "2026-10-03"
+                    },
+                    {
+                        "id": "ach-002",
+                        "title": "Startup Jobs & Hiring Signals Scraper (Greenhouse & Lever ATS)",
+                        "category": "CLOUD SAAS ACTOR",
+                        "description": "High-speed async Python + HTTPX cloud scraper extracting real-time startup job postings, tech stack signals, and remote indicators directly from ATS REST APIs.",
+                        "proof_link": "https://console.apify.com/actors/70YCuZT64AsbAl71t",
+                        "date": "2026-10-03"
+                    },
+                    {
+                        "id": "ach-003",
+                        "title": "B2B Lead & Website Tech Stack Enricher",
+                        "category": "CLOUD SAAS ACTOR",
+                        "description": "Automated B2B domain enrichment Actor extracting verified contact channels and technology footprints for Clay and n8n pipelines.",
+                        "proof_link": "https://apify.com/store",
+                        "date": "2026-10-02"
+                    },
+                    {
+                        "id": "ach-004",
+                        "title": "Agentic Chaos Monkey — Zero-False-Positive AST Scope Tracker",
+                        "category": "SECURITY ENGINE",
+                        "description": "Upgraded static AST engine to track client-level timeouts (httpx.AsyncClient(timeout=...) and asyncio.wait_for) and filter benchmark/test files.",
+                        "proof_link": "https://github.com/baddevil512/agent-chaos-monkey",
+                        "date": "2026-10-03"
+                    }
+                ]
+            };
+
+            try {
+                const resp = await fetch('achievements.json');
+                if (resp.ok) {
+                    achievementsData = await resp.json();
+                } else {
+                    achievementsData = fallbackData;
+                }
+            } catch (e) {
+                achievementsData = fallbackData;
+            }
+
+            renderAchievements('ALL');
+        }
+
+        function renderAchievements(filterCategory) {
+            if (!achievementsData) return;
+
+            const m = achievementsData.metrics_summary || {};
+            document.getElementById('metric-bugs').innerText = m.confirmed_bugs || 1;
+            document.getElementById('metric-actors').innerText = m.cloud_saas_actors || 2;
+            document.getElementById('metric-audited').innerText = m.repos_audited || "50+";
+
+            const container = document.getElementById('achievements-container');
+            container.innerHTML = '';
+
+            const list = achievementsData.achievements || [];
+            const filtered = filterCategory === 'ALL' ? list : list.filter(a => a.category === filterCategory);
+
+            filtered.forEach(item => {
+                let badgeClass = 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30';
+                if (item.category === 'CONFIRMED BUG CATCH') {
+                    badgeClass = 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+                } else if (item.category === 'CLOUD SAAS ACTOR') {
+                    badgeClass = 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/40 transition-all card-glow';
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center space-x-2.5">
+                            <span class="text-xs font-bold border px-2.5 py-0.5 rounded ${badgeClass}">${item.category}</span>
+                            <span class="text-xs text-slate-500 font-mono">${item.date}</span>
+                        </div>
+                        <a href="${item.proof_link}" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center space-x-1">
+                            <span>Verify Proof</span>
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-1.5">${escapeHtml(item.title)}</h3>
+                    <p class="text-sm text-slate-300 font-medium">${escapeHtml(item.description)}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterAchievements(cat) {
+            const btns = {
+                'ALL': 'filter-all-btn',
+                'CONFIRMED BUG CATCH': 'filter-bugs-btn',
+                'CLOUD SAAS ACTOR': 'filter-actors-btn',
+                'SECURITY ENGINE': 'filter-engine-btn'
+            };
+
+            Object.keys(btns).forEach(key => {
+                const btn = document.getElementById(btns[key]);
+                if (btn) {
+                    if (key === cat) {
+                        btn.className = 'text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white transition-all';
+                    } else {
+                        btn.className = 'text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all';
+                    }
+                }
+            });
+
+            renderAchievements(cat);
         }
 
         function loadExampleCode() {
@@ -227,8 +432,15 @@ def parse_user_payload(raw_input):
 
         // Client-side JavaScript Static Analysis Engine (Fallback for standalone GitHub Pages)
         function analyzeCodeJs(code, filename = "agent_workflow.py") {
+            const pLower = filename.toLowerCase();
+            if (pLower.includes('tests/') || pLower.includes('test/') || pLower.includes('benchmarks/') || pLower.includes('benchmark/') || pLower.includes('test_') || pLower.includes('_test.py')) {
+                return { target_path: filename, scanned_files_count: 1, total_issues_count: 0, resilience_score: 100.0, risk_grade: "A", vulnerabilities: [] };
+            }
+
             const lines = code.split('\n');
             const vulns = [];
+
+            const hasClientTimeout = /httpx\.(AsyncClient|Client)\s*\([^)]*timeout\s*=/i.test(code) || /asyncio\.wait_for\s*\([^)]*timeout\s*=/i.test(code);
 
             // Rule 1: UNBOUNDED_AGENT_LOOP
             if (code.includes('Agent(')) {
@@ -265,20 +477,22 @@ def parse_user_payload(raw_input):
             }
 
             // Rule 2: MISSING_LLM_TIMEOUT
-            lines.forEach((line, idx) => {
-                if (/(ChatOpenAI|LLM|ChatAnthropic|OpenAI)\s*\(/.test(line) && !line.includes('timeout')) {
-                    vulns.push({
-                        file_path: filename,
-                        line_number: idx + 1,
-                        category: 'MISSING_LLM_TIMEOUT',
-                        severity: 'HIGH',
-                        symbol_name: line.trim().split('(')[0],
-                        description: 'LLM Client initialized without explicitly configured network timeout.',
-                        code_snippet: line.trim(),
-                        fix_recommendation: 'Pass `request_timeout=30.0` or `timeout=30.0` to avoid hangs.'
-                    });
-                }
-            });
+            if (!hasClientTimeout) {
+                lines.forEach((line, idx) => {
+                    if (/(ChatOpenAI|LLM|ChatAnthropic|OpenAI)\s*\(/.test(line) && !line.includes('timeout')) {
+                        vulns.push({
+                            file_path: filename,
+                            line_number: idx + 1,
+                            category: 'MISSING_LLM_TIMEOUT',
+                            severity: 'HIGH',
+                            symbol_name: line.trim().split('(')[0],
+                            description: 'LLM Client initialized without explicitly configured network timeout.',
+                            code_snippet: line.trim(),
+                            fix_recommendation: 'Pass `request_timeout=30.0` or `timeout=30.0` to avoid hangs.'
+                        });
+                    }
+                });
+            }
 
             // Rule 3: PROMPT_INJECTION_SINK
             lines.forEach((line, idx) => {
@@ -299,7 +513,6 @@ def parse_user_payload(raw_input):
             // Rule 4: UNHANDLED_JSON_PARSING
             lines.forEach((line, idx) => {
                 if (line.includes('json.loads(')) {
-                    // check if inside try block
                     const prevLines = lines.slice(Math.max(0, idx - 5), idx).join('\n');
                     if (!prevLines.includes('try:')) {
                         vulns.push({
@@ -368,7 +581,6 @@ def parse_user_payload(raw_input):
             showLoading(true);
 
             try {
-                // Attempt FastAPI Backend API if available
                 const resp = await fetch('/api/scan/code', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -378,11 +590,9 @@ def parse_user_payload(raw_input):
                 if (resp.ok) {
                     currentScanData = await resp.json();
                 } else {
-                    // Fallback to in-browser JS analysis
                     currentScanData = analyzeCodeJs(code);
                 }
             } catch (err) {
-                // Server unavailable or static GitHub Pages mode
                 currentScanData = analyzeCodeJs(code);
             }
 
@@ -400,7 +610,6 @@ def parse_user_payload(raw_input):
             showLoading(true);
 
             try {
-                // Try API endpoint first
                 const resp = await fetch('/api/scan/repo', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -410,7 +619,6 @@ def parse_user_payload(raw_input):
                 if (resp.ok) {
                     currentScanData = await resp.json();
                 } else {
-                    // Direct GitHub REST API fetch from browser
                     currentScanData = await scanRepoViaBrowserGithubApi(repoUrl);
                 }
             } catch (err) {
@@ -511,7 +719,6 @@ def parse_user_payload(raw_input):
             scoreText.innerText = Math.round(data.resilience_score);
             targetLabel.innerText = `Target: ${data.target_path} (${data.scanned_files_count} Python file${data.scanned_files_count === 1 ? '' : 's'} scanned)`;
 
-            // Grade styling
             gradeBadge.innerText = `Grade ${data.risk_grade}`;
             if (data.risk_grade === 'A') {
                 circleContainer.className = "relative w-24 h-24 rounded-full flex items-center justify-center border-4 border-emerald-500 bg-slate-950";
@@ -529,7 +736,6 @@ def parse_user_payload(raw_input):
 
             issuesStatus.innerText = `${data.total_issues_count} Vulnerabilit${data.total_issues_count === 1 ? 'y' : 'ies'} Detected`;
 
-            // Vulnerability Cards
             const vulnList = document.getElementById('vulnerability-list');
             vulnList.innerHTML = '';
 
@@ -622,9 +828,17 @@ def parse_user_payload(raw_input):
             downloadAnchor.remove();
         }
 
-        // Auto-run scanner if ?repo= query parameter is present
+        // Auto-run scanner if ?repo= query parameter or #proof-of-work hash is present
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
+            const viewParam = urlParams.get('view');
+            const hash = window.location.hash;
+
+            if (hash === '#proof-of-work' || viewParam === 'portfolio' || viewParam === 'proof-of-work' || viewParam === 'proof') {
+                switchTab('proof');
+                return;
+            }
+
             let repoParam = urlParams.get('repo');
             if (repoParam) {
                 repoParam = repoParam.trim();

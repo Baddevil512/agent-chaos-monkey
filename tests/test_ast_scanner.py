@@ -153,6 +153,39 @@ def unsafe():
             res_wrapper = scanner.run()
             self.assertEqual(res_wrapper.total_issues_count, 2)
 
+    def test_client_level_timeout_ignored(self):
+        code = '''
+import httpx
+from langchain_community.chat_models import ChatOpenAI
+
+client = httpx.AsyncClient(timeout=30.0)
+llm = ChatOpenAI(model="gpt-4o")
+'''
+        with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False, encoding="utf-8") as f:
+            f.write(code)
+            f_path = f.name
+
+        try:
+            vulns = scan_file(f_path)
+            self.assertEqual(len(vulns), 0)
+        finally:
+            os.remove(f_path)
+
+    def test_test_path_skipped(self):
+        code = '''
+from crewai import Agent
+agent = Agent(role="Bot", goal="Test")
+'''
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tests_dir = os.path.join(tmp_dir, "tests")
+            os.makedirs(tests_dir, exist_ok=True)
+            f_path = os.path.join(tests_dir, "test_agent.py")
+            with open(f_path, "w", encoding="utf-8") as f:
+                f.write(code)
+
+            result = scan_directory(tmp_dir)
+            self.assertEqual(result.total_issues_count, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
