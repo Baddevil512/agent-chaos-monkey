@@ -103,12 +103,33 @@ def ship_achievement(title: str, category: str, desc: str, link: str):
 
     print(f"  ✅ Appended achievement '{title}' to docs/achievements.json")
 
+    # Also update portfolio repo achievements.json if present
+    portfolio_file = r"D:\abhay-portfolio\achievements.json"
+    if os.path.exists(os.path.dirname(portfolio_file)):
+        try:
+            with open(portfolio_file, "w", encoding="utf-8") as pf:
+                json.dump(data, pf, indent=2)
+            print(f"  ✅ Synced achievement '{title}' to {portfolio_file}")
+        except Exception as e:
+            print(f"  ⚠️ Error syncing portfolio achievements file: {e}")
+
     # Generate LinkedIn Post
     post_text = generate_linkedin_post(title, category, desc, link)
 
     # Build 1-Click LinkedIn Share URL
     encoded_text = urllib.parse.quote(post_text)
     linkedin_share_url = f"https://www.linkedin.com/feed/?shareActive=true&text={encoded_text}"
+
+    # Truncate text for Discord share link to keep URL under Discord's 512-character limit (preventing 400 Bad Request)
+    if len(post_text) > 350:
+        short_post_text = post_text[:350]
+        encoded_short_text = urllib.parse.quote(short_post_text)
+        discord_linkedin_share_url = f"https://www.linkedin.com/feed/?shareActive=true&text={encoded_short_text}"
+    else:
+        discord_linkedin_share_url = linkedin_share_url
+
+    if len(discord_linkedin_share_url) > 480:
+        discord_linkedin_share_url = "https://www.linkedin.com/feed/?shareActive=true"
 
     print(f"\n📝 Generated Build-in-Public LinkedIn Post:\n{'-'*50}\n{post_text}\n{'-'*50}")
     print(f"\n🔗 1-Click LinkedIn Share URL:\n👉 {linkedin_share_url}\n")
@@ -128,7 +149,7 @@ def ship_achievement(title: str, category: str, desc: str, link: str):
                         {"name": "📅 Date", "value": f"`{today_str}`", "inline": True},
                         {"name": "💡 Description", "value": desc, "inline": False},
                         {"name": "🔗 Proof Link", "value": f"[Verify Proof ↗]({link})", "inline": False},
-                        {"name": "📱 1-Click Share to LinkedIn", "value": f"[👉 **Post to LinkedIn in 1-Click**]({linkedin_share_url})", "inline": False},
+                        {"name": "📱 1-Click Share to LinkedIn", "value": f"[👉 **Post to LinkedIn in 1-Click**]({discord_linkedin_share_url})", "inline": False},
                         {"name": "📝 LinkedIn Post Copy", "value": f"```markdown\n{post_text[:800]}\n```", "inline": False}
                     ],
                     "footer": {"text": "Agentic Chaos Monkey • Proof-of-Work & Shipped SaaS Engine"}
@@ -152,17 +173,29 @@ def ship_achievement(title: str, category: str, desc: str, link: str):
         except Exception as e:
             print(f"  ⚠️ Make webhook error: {e}")
 
-    # Git commit & push
+    # Git commit & push for main repo
     try:
         subprocess.run(["git", "add", "docs/achievements.json"], check=True)
         subprocess.run(["git", "commit", "-m", f"feat(achievements): ship new achievement '{title}'"], check=True)
         push_res = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True)
         if push_res.returncode == 0:
-            print("  🚀 Automatically pushed docs/achievements.json to GitHub main branch!")
+            print("  🚀 Automatically pushed docs/achievements.json to agent-chaos-monkey GitHub main branch!")
         else:
             print(f"  ⚠️ Git push output: {push_res.stderr.strip()[:100]}")
     except Exception as e:
         print(f"  ⚠️ Git commit/push step error: {e}")
+
+    # Git commit & push for portfolio repo
+    portfolio_dir = r"D:\abhay-portfolio"
+    if os.path.exists(os.path.join(portfolio_dir, ".git")):
+        try:
+            subprocess.run(["git", "add", "achievements.json"], cwd=portfolio_dir, check=True)
+            subprocess.run(["git", "commit", "-m", f"feat(achievements): ship new achievement '{title}'"], cwd=portfolio_dir, check=True)
+            p_push = subprocess.run(["git", "push", "origin", "main"], cwd=portfolio_dir, capture_output=True, text=True)
+            if p_push.returncode == 0:
+                print("  🚀 Automatically pushed achievements.json to root portfolio GitHub main branch!")
+        except Exception as e:
+            print(f"  ⚠️ Portfolio git commit/push error: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="Ship new Proof-of-Work achievement & auto-publish to website, LinkedIn, and Discord.")
