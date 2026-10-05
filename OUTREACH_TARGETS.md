@@ -1,6 +1,6 @@
 # 🐒⚡ B2B Founder Outreach & Lead Generation Targets
-> Generated automatically by `outreach_hunter.py` on 2026-10-03 19:29 UTC
-> Total Verified Targets: **10** High-Value Repositories with Critical Fault Risks
+> Generated automatically by `outreach_hunter.py` on 2026-10-03 21:11 UTC
+> Total Verified Targets: **5** High-Value Repositories with Critical Fault Risks
 
 ---
 
@@ -8,179 +8,33 @@
 
 | # | Repository | Stars | Resilience Score | Risk Grade | Critical Issues | 1-Click Live Audit Link |
 |---|------------|-------|------------------|------------|-----------------|-------------------------|
-| 1 | [shuxiachai/academic-commercialization-agent](https://github.com/shuxiachai/academic-commercialization-agent) | ⭐ 771 | `0.0/100` | **Grade F** | 2 Critical, 4 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=shuxiachai/academic-commercialization-agent) |
-| 2 | [aisecnomad/Project-Nexus](https://github.com/aisecnomad/Project-Nexus) | ⭐ 11 | `50.0/100` | **Grade D** | 2 Critical, 0 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=aisecnomad/Project-Nexus) |
-| 3 | [neatlogs/neatlogs](https://github.com/neatlogs/neatlogs) | ⭐ 93 | `50.0/100` | **Grade D** | 2 Critical, 0 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=neatlogs/neatlogs) |
-| 4 | [IBM/watsonx-developer-hub](https://github.com/IBM/watsonx-developer-hub) | ⭐ 51 | `60.0/100` | **Grade D** | 1 Critical, 1 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=IBM/watsonx-developer-hub) |
-| 5 | [OWASP/www-project-agent-memory-guard](https://github.com/OWASP/www-project-agent-memory-guard) | ⭐ 183 | `75.0/100` | **Grade C** | 1 Critical, 0 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=OWASP/www-project-agent-memory-guard) |
-| 6 | [udaysaai/mycelium](https://github.com/udaysaai/mycelium) | ⭐ 18 | `0.0/100` | **Grade F** | 0 Critical, 7 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=udaysaai/mycelium) |
-| 7 | [botextractai/ai-crewai-multi-agent](https://github.com/botextractai/ai-crewai-multi-agent) | ⭐ 40 | `25.0/100` | **Grade F** | 0 Critical, 5 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=botextractai/ai-crewai-multi-agent) |
-| 8 | [rootflo/wavefront](https://github.com/rootflo/wavefront) | ⭐ 199 | `70.0/100` | **Grade C** | 0 Critical, 2 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=rootflo/wavefront) |
-| 9 | [jagmarques/asqav-sdk](https://github.com/jagmarques/asqav-sdk) | ⭐ 631 | `55.0/100` | **Grade D** | 0 Critical, 1 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=jagmarques/asqav-sdk) |
-| 10 | [AgentSafeLabs/safelabs-eval](https://github.com/AgentSafeLabs/safelabs-eval) | ⭐ 488 | `85.0/100` | **Grade B** | 0 Critical, 1 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=AgentSafeLabs/safelabs-eval) |
+| 1 | [Grigorij-Dudnik/RoboCrew](https://github.com/Grigorij-Dudnik/RoboCrew) | ⭐ 139 | `0.0/100` | **Grade F** | 2 Critical, 19 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=Grigorij-Dudnik/RoboCrew) |
+| 2 | [raia-live/amfs](https://github.com/raia-live/amfs) | ⭐ 82 | `40.0/100` | **Grade F** | 2 Critical, 0 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=raia-live/amfs) |
+| 3 | [loopgain-ai/loopgain](https://github.com/loopgain-ai/loopgain) | ⭐ 126 | `75.0/100` | **Grade C** | 1 Critical, 0 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=loopgain-ai/loopgain) |
+| 4 | [SAP-samples/codejam-code-based-agents](https://github.com/SAP-samples/codejam-code-based-agents) | ⭐ 62 | `10.0/100` | **Grade F** | 0 Critical, 6 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=SAP-samples/codejam-code-based-agents) |
+| 5 | [pic-standard/pic-standard](https://github.com/pic-standard/pic-standard) | ⭐ 32 | `85.0/100` | **Grade B** | 0 Critical, 1 High | [Run Live Scan 🚀](https://baddevil512.github.io/agent-chaos-monkey/?repo=pic-standard/pic-standard) |
 
 ---
 
 ## 🎯 Target Outreach Profiles & Pre-filled Pitches
 
-### 1. [shuxiachai/academic-commercialization-agent](https://github.com/shuxiachai/academic-commercialization-agent)
+### 1. [Grigorij-Dudnik/RoboCrew](https://github.com/Grigorij-Dudnik/RoboCrew)
 
-- **Owner / Org Profile**: [shuxiachai](https://github.com/shuxiachai)
-- **GitHub Stars**: ⭐ 771
+- **Owner / Org Profile**: [Grigorij-Dudnik](https://github.com/Grigorij-Dudnik)
+- **GitHub Stars**: ⭐ 139
 - **Agent Resilience Rating**: Score `0.0/100` (Grade **F**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=shuxiachai/academic-commercialization-agent](https://baddevil512.github.io/agent-chaos-monkey/?repo=shuxiachai/academic-commercialization-agent)
+- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=Grigorij-Dudnik/RoboCrew](https://baddevil512.github.io/agent-chaos-monkey/?repo=Grigorij-Dudnik/RoboCrew)
 
 #### Top Findings:
-- **[HIGH] MISSING_CIRCUIT_BREAKER** at `ablation.py:322`
-  - *Details*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
-  - *Recommended Fix*: `Agent(role='...', goal='...', max_iter=10, max_execution_time=300)`
-- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `api/main.py:239`
+- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `src/robocrew/core/LLMAgent.py:183`
   - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
   - *Recommended Fix*: `for step in range(MAX_STEPS):
     # Agent iteration logic
     if done:
         break`
-
-#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
-
-```markdown
-Hey shuxiachai Team 👋
-
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[shuxiachai/academic-commercialization-agent](https://github.com/shuxiachai/academic-commercialization-agent)**:
-
-  1. **`MISSING_CIRCUIT_BREAKER`** in `ablation.py` (Line 322)
-     - *Impact*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
-  2. **`UNBOUNDED_AGENT_LOOP`** in `api/main.py` (Line 239)
-     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-
-When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
-
-⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=shuxiachai/academic-commercialization-agent](https://baddevil512.github.io/agent-chaos-monkey/?repo=shuxiachai/academic-commercialization-agent)
-
-We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
-
-Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
-
-Best,
-Abhay & Agentic Chaos Monkey Team
-```
-
----
-
-### 2. [aisecnomad/Project-Nexus](https://github.com/aisecnomad/Project-Nexus)
-
-- **Owner / Org Profile**: [aisecnomad](https://github.com/aisecnomad)
-- **GitHub Stars**: ⭐ 11
-- **Agent Resilience Rating**: Score `50.0/100` (Grade **D**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=aisecnomad/Project-Nexus](https://baddevil512.github.io/agent-chaos-monkey/?repo=aisecnomad/Project-Nexus)
-
-#### Top Findings:
-- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `shadowscan/connectors/base.py:144`
-  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  - *Recommended Fix*: `for step in range(MAX_STEPS):
-    # Agent iteration logic
-    if done:
-        break`
-- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `shadowscan/connectors/cloud/aws.py:1995`
-  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  - *Recommended Fix*: `for step in range(MAX_STEPS):
-    # Agent iteration logic
-    if done:
-        break`
-
-#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
-
-```markdown
-Hey aisecnomad Team 👋
-
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[aisecnomad/Project-Nexus](https://github.com/aisecnomad/Project-Nexus)**:
-
-  1. **`UNBOUNDED_AGENT_LOOP`** in `shadowscan/connectors/base.py` (Line 144)
-     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  2. **`UNBOUNDED_AGENT_LOOP`** in `shadowscan/connectors/cloud/aws.py` (Line 1995)
-     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-
-When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
-
-⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=aisecnomad/Project-Nexus](https://baddevil512.github.io/agent-chaos-monkey/?repo=aisecnomad/Project-Nexus)
-
-We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
-
-Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
-
-Best,
-Abhay & Agentic Chaos Monkey Team
-```
-
----
-
-### 3. [neatlogs/neatlogs](https://github.com/neatlogs/neatlogs)
-
-- **Owner / Org Profile**: [neatlogs](https://github.com/neatlogs)
-- **GitHub Stars**: ⭐ 93
-- **Agent Resilience Rating**: Score `50.0/100` (Grade **D**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=neatlogs/neatlogs](https://baddevil512.github.io/agent-chaos-monkey/?repo=neatlogs/neatlogs)
-
-#### Top Findings:
-- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `neatlogs/_wrap_utils.py:1145`
-  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  - *Recommended Fix*: `for step in range(MAX_STEPS):
-    # Agent iteration logic
-    if done:
-        break`
-- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `neatlogs/_wrap_utils.py:1308`
-  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  - *Recommended Fix*: `for step in range(MAX_STEPS):
-    # Agent iteration logic
-    if done:
-        break`
-
-#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
-
-```markdown
-Hey neatlogs Team 👋
-
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[neatlogs/neatlogs](https://github.com/neatlogs/neatlogs)**:
-
-  1. **`UNBOUNDED_AGENT_LOOP`** in `neatlogs/_wrap_utils.py` (Line 1145)
-     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  2. **`UNBOUNDED_AGENT_LOOP`** in `neatlogs/_wrap_utils.py` (Line 1308)
-     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-
-When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
-
-⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=neatlogs/neatlogs](https://baddevil512.github.io/agent-chaos-monkey/?repo=neatlogs/neatlogs)
-
-We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
-
-Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
-
-Best,
-Abhay & Agentic Chaos Monkey Team
-```
-
----
-
-### 4. [IBM/watsonx-developer-hub](https://github.com/IBM/watsonx-developer-hub)
-
-- **Owner / Org Profile**: [IBM](https://github.com/IBM)
-- **GitHub Stars**: ⭐ 51
-- **Agent Resilience Rating**: Score `60.0/100` (Grade **D**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=IBM/watsonx-developer-hub](https://baddevil512.github.io/agent-chaos-monkey/?repo=IBM/watsonx-developer-hub)
-
-#### Top Findings:
-- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `agents/base/autogen-agent/ai_service.py:233`
-  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  - *Recommended Fix*: `for step in range(MAX_STEPS):
-    # Agent iteration logic
-    if done:
-        break`
-- **[HIGH] UNPROTECTED_TOOL** at `agents/base/beeai-framework-requirement-agent/src/beeai_framework_requirement_agent_base/tools.py:5`
-  - *Details*: Tool function 'dummy_web_search()' lacks try-except fault handling against network/API failures.
-  - *Recommended Fix*: `def dummy_web_search(...):
+- **[HIGH] UNPROTECTED_TOOL** at `src/robocrew/core/tools.py:5`
+  - *Details*: Tool function 'finish_task()' lacks try-except fault handling against network/API failures.
+  - *Recommended Fix*: `def finish_task(...):
     try:
         # Tool logic
     except Exception as e:
@@ -189,19 +43,19 @@ Abhay & Agentic Chaos Monkey Team
 #### Ready-to-Copy Founder DM / GitHub Issue Pitch:
 
 ```markdown
-Hey IBM Team 👋
+Hey Grigorij-Dudnik Team 👋
 
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[IBM/watsonx-developer-hub](https://github.com/IBM/watsonx-developer-hub)**:
+We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[Grigorij-Dudnik/RoboCrew](https://github.com/Grigorij-Dudnik/RoboCrew)**:
 
-  1. **`UNBOUNDED_AGENT_LOOP`** in `agents/base/autogen-agent/ai_service.py` (Line 233)
+  1. **`UNBOUNDED_AGENT_LOOP`** in `src/robocrew/core/LLMAgent.py` (Line 183)
      - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
-  2. **`UNPROTECTED_TOOL`** in `agents/base/beeai-framework-requirement-agent/src/beeai_framework_requirement_agent_base/tools.py` (Line 5)
-     - *Impact*: Tool function 'dummy_web_search()' lacks try-except fault handling against network/API failures.
+  2. **`UNPROTECTED_TOOL`** in `src/robocrew/core/tools.py` (Line 5)
+     - *Impact*: Tool function 'finish_task()' lacks try-except fault handling against network/API failures.
 
 When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
 
 ⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=IBM/watsonx-developer-hub](https://baddevil512.github.io/agent-chaos-monkey/?repo=IBM/watsonx-developer-hub)
+👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=Grigorij-Dudnik/RoboCrew](https://baddevil512.github.io/agent-chaos-monkey/?repo=Grigorij-Dudnik/RoboCrew)
 
 We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
 
@@ -213,32 +67,83 @@ Abhay & Agentic Chaos Monkey Team
 
 ---
 
-### 5. [OWASP/www-project-agent-memory-guard](https://github.com/OWASP/www-project-agent-memory-guard)
+### 2. [raia-live/amfs](https://github.com/raia-live/amfs)
 
-- **Owner / Org Profile**: [OWASP](https://github.com/OWASP)
-- **GitHub Stars**: ⭐ 183
+- **Owner / Org Profile**: [raia-live](https://github.com/raia-live)
+- **GitHub Stars**: ⭐ 82
+- **Agent Resilience Rating**: Score `40.0/100` (Grade **F**)
+- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=raia-live/amfs](https://baddevil512.github.io/agent-chaos-monkey/?repo=raia-live/amfs)
+
+#### Top Findings:
+- **[MEDIUM] UNHANDLED_JSON_PARSING** at `packages/adapters/filesystem/src/amfs_filesystem/adapter.py:177`
+  - *Details*: `json.loads()` called on LLM/tool output without `try-except` exception handling or Pydantic validation.
+  - *Recommended Fix*: `try:
+    data = json.loads(llm_output)
+except json.JSONDecodeError:
+    data = {'fallback': True}`
+- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `packages/adapters/postgres/src/amfs_postgres/adapter.py:2128`
+  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
+  - *Recommended Fix*: `for step in range(MAX_STEPS):
+    # Agent iteration logic
+    if done:
+        break`
+
+#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
+
+```markdown
+Hey raia-live Team 👋
+
+We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[raia-live/amfs](https://github.com/raia-live/amfs)**:
+
+  1. **`UNHANDLED_JSON_PARSING`** in `packages/adapters/filesystem/src/amfs_filesystem/adapter.py` (Line 177)
+     - *Impact*: `json.loads()` called on LLM/tool output without `try-except` exception handling or Pydantic validation.
+  2. **`UNBOUNDED_AGENT_LOOP`** in `packages/adapters/postgres/src/amfs_postgres/adapter.py` (Line 2128)
+     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
+
+When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
+
+⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
+👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=raia-live/amfs](https://baddevil512.github.io/agent-chaos-monkey/?repo=raia-live/amfs)
+
+We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
+
+Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
+
+Best,
+Abhay & Agentic Chaos Monkey Team
+```
+
+---
+
+### 3. [loopgain-ai/loopgain](https://github.com/loopgain-ai/loopgain)
+
+- **Owner / Org Profile**: [loopgain-ai](https://github.com/loopgain-ai)
+- **GitHub Stars**: ⭐ 126
 - **Agent Resilience Rating**: Score `75.0/100` (Grade **C**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=OWASP/www-project-agent-memory-guard](https://baddevil512.github.io/agent-chaos-monkey/?repo=OWASP/www-project-agent-memory-guard)
+- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=loopgain-ai/loopgain](https://baddevil512.github.io/agent-chaos-monkey/?repo=loopgain-ai/loopgain)
 
 #### Top Findings:
-- **[CRITICAL] HARDCODED_SECRET** at `benchmarks/security_benchmark.py:99`
-  - *Details*: Detected GitHub Personal Access Token hardcoded in agent configuration.
-  - *Recommended Fix*: `os.getenv('OPENAI_API_KEY')  # Use environment variables or secrets manager`
+- **[CRITICAL] UNBOUNDED_AGENT_LOOP** at `loopgain/integrations/autogen.py:119`
+  - *Details*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
+  - *Recommended Fix*: `for step in range(MAX_STEPS):
+    # Agent iteration logic
+    if done:
+        break`
 
 #### Ready-to-Copy Founder DM / GitHub Issue Pitch:
 
 ```markdown
-Hey OWASP Team 👋
+Hey loopgain-ai Team 👋
 
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[OWASP/www-project-agent-memory-guard](https://github.com/OWASP/www-project-agent-memory-guard)**:
+We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[loopgain-ai/loopgain](https://github.com/loopgain-ai/loopgain)**:
 
-  1. **`HARDCODED_SECRET`** in `benchmarks/security_benchmark.py` (Line 99)
-     - *Impact*: Detected GitHub Personal Access Token hardcoded in agent configuration.
+  1. **`UNBOUNDED_AGENT_LOOP`** in `loopgain/integrations/autogen.py` (Line 119)
+     - *Impact*: Infinite retry loop detected (`while True:`) without step counter cap or circuit breaker guard.
 
 When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
 
 ⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=OWASP/www-project-agent-memory-guard](https://baddevil512.github.io/agent-chaos-monkey/?repo=OWASP/www-project-agent-memory-guard)
+👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=loopgain-ai/loopgain](https://baddevil512.github.io/agent-chaos-monkey/?repo=loopgain-ai/loopgain)
 
 We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
 
@@ -250,37 +155,41 @@ Abhay & Agentic Chaos Monkey Team
 
 ---
 
-### 6. [udaysaai/mycelium](https://github.com/udaysaai/mycelium)
+### 4. [SAP-samples/codejam-code-based-agents](https://github.com/SAP-samples/codejam-code-based-agents)
 
-- **Owner / Org Profile**: [udaysaai](https://github.com/udaysaai)
-- **GitHub Stars**: ⭐ 18
-- **Agent Resilience Rating**: Score `0.0/100` (Grade **F**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=udaysaai/mycelium](https://baddevil512.github.io/agent-chaos-monkey/?repo=udaysaai/mycelium)
+- **Owner / Org Profile**: [SAP-samples](https://github.com/SAP-samples)
+- **GitHub Stars**: ⭐ 62
+- **Agent Resilience Rating**: Score `10.0/100` (Grade **F**)
+- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=SAP-samples/codejam-code-based-agents](https://baddevil512.github.io/agent-chaos-monkey/?repo=SAP-samples/codejam-code-based-agents)
 
 #### Top Findings:
-- **[HIGH] MISSING_LLM_TIMEOUT** at `benchmarks/scripts/fix_load_benchmark.py:56`
-  - *Details*: LLM or API call 'post()' initialized without an explicit timeout guard (risks thread hanging).
-  - *Recommended Fix*: `post(..., timeout=30.0)`
-- **[HIGH] MISSING_LLM_TIMEOUT** at `benchmarks/scripts/run_chain_benchmark.py:29`
-  - *Details*: LLM or API call 'post()' initialized without an explicit timeout guard (risks thread hanging).
-  - *Recommended Fix*: `post(..., timeout=30.0)`
+- **[HIGH] MISSING_CIRCUIT_BREAKER** at `project/Python/solution/basic_agent.py:11`
+  - *Details*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
+  - *Recommended Fix*: `Agent(role='...', goal='...', max_iter=10, max_execution_time=300)`
+- **[HIGH] UNPROTECTED_TOOL** at `project/Python/solution/investigator_crew.py:49`
+  - *Details*: Tool function 'call_grounding_service()' lacks try-except fault handling against network/API failures.
+  - *Recommended Fix*: `def call_grounding_service(...):
+    try:
+        # Tool logic
+    except Exception as e:
+        return f'Tool error: {e}'`
 
 #### Ready-to-Copy Founder DM / GitHub Issue Pitch:
 
 ```markdown
-Hey udaysaai Team 👋
+Hey SAP-samples Team 👋
 
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[udaysaai/mycelium](https://github.com/udaysaai/mycelium)**:
+We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[SAP-samples/codejam-code-based-agents](https://github.com/SAP-samples/codejam-code-based-agents)**:
 
-  1. **`MISSING_LLM_TIMEOUT`** in `benchmarks/scripts/fix_load_benchmark.py` (Line 56)
-     - *Impact*: LLM or API call 'post()' initialized without an explicit timeout guard (risks thread hanging).
-  2. **`MISSING_LLM_TIMEOUT`** in `benchmarks/scripts/run_chain_benchmark.py` (Line 29)
-     - *Impact*: LLM or API call 'post()' initialized without an explicit timeout guard (risks thread hanging).
+  1. **`MISSING_CIRCUIT_BREAKER`** in `project/Python/solution/basic_agent.py` (Line 11)
+     - *Impact*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
+  2. **`UNPROTECTED_TOOL`** in `project/Python/solution/investigator_crew.py` (Line 49)
+     - *Impact*: Tool function 'call_grounding_service()' lacks try-except fault handling against network/API failures.
 
 When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
 
 ⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=udaysaai/mycelium](https://baddevil512.github.io/agent-chaos-monkey/?repo=udaysaai/mycelium)
+👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=SAP-samples/codejam-code-based-agents](https://baddevil512.github.io/agent-chaos-monkey/?repo=SAP-samples/codejam-code-based-agents)
 
 We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
 
@@ -292,164 +201,32 @@ Abhay & Agentic Chaos Monkey Team
 
 ---
 
-### 7. [botextractai/ai-crewai-multi-agent](https://github.com/botextractai/ai-crewai-multi-agent)
+### 5. [pic-standard/pic-standard](https://github.com/pic-standard/pic-standard)
 
-- **Owner / Org Profile**: [botextractai](https://github.com/botextractai)
-- **GitHub Stars**: ⭐ 40
-- **Agent Resilience Rating**: Score `25.0/100` (Grade **F**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=botextractai/ai-crewai-multi-agent](https://baddevil512.github.io/agent-chaos-monkey/?repo=botextractai/ai-crewai-multi-agent)
+- **Owner / Org Profile**: [pic-standard](https://github.com/pic-standard)
+- **GitHub Stars**: ⭐ 32
+- **Agent Resilience Rating**: Score `85.0/100` (Grade **B**)
+- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=pic-standard/pic-standard](https://baddevil512.github.io/agent-chaos-monkey/?repo=pic-standard/pic-standard)
 
 #### Top Findings:
-- **[HIGH] MISSING_LLM_TIMEOUT** at `crew.py:13`
+- **[HIGH] MISSING_LLM_TIMEOUT** at `sdk-python/langchain_pic_generator.py:21`
   - *Details*: LLM or API call 'ChatOpenAI()' initialized without an explicit timeout guard (risks thread hanging).
   - *Recommended Fix*: `ChatOpenAI(..., timeout=30.0)`
-- **[HIGH] MISSING_CIRCUIT_BREAKER** at `crew.py:17`
-  - *Details*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
-  - *Recommended Fix*: `Agent(role='...', goal='...', max_iter=10, max_execution_time=300)`
 
 #### Ready-to-Copy Founder DM / GitHub Issue Pitch:
 
 ```markdown
-Hey botextractai Team 👋
+Hey pic-standard Team 👋
 
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[botextractai/ai-crewai-multi-agent](https://github.com/botextractai/ai-crewai-multi-agent)**:
+We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[pic-standard/pic-standard](https://github.com/pic-standard/pic-standard)**:
 
-  1. **`MISSING_LLM_TIMEOUT`** in `crew.py` (Line 13)
+  1. **`MISSING_LLM_TIMEOUT`** in `sdk-python/langchain_pic_generator.py` (Line 21)
      - *Impact*: LLM or API call 'ChatOpenAI()' initialized without an explicit timeout guard (risks thread hanging).
-  2. **`MISSING_CIRCUIT_BREAKER`** in `crew.py` (Line 17)
-     - *Impact*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
 
 When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
 
 ⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=botextractai/ai-crewai-multi-agent](https://baddevil512.github.io/agent-chaos-monkey/?repo=botextractai/ai-crewai-multi-agent)
-
-We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
-
-Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
-
-Best,
-Abhay & Agentic Chaos Monkey Team
-```
-
----
-
-### 8. [rootflo/wavefront](https://github.com/rootflo/wavefront)
-
-- **Owner / Org Profile**: [rootflo](https://github.com/rootflo)
-- **GitHub Stars**: ⭐ 199
-- **Agent Resilience Rating**: Score `70.0/100` (Grade **C**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=rootflo/wavefront](https://baddevil512.github.io/agent-chaos-monkey/?repo=rootflo/wavefront)
-
-#### Top Findings:
-- **[HIGH] MISSING_CIRCUIT_BREAKER** at `flo_ai/flo_ai/agent/builder.py:245`
-  - *Details*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
-  - *Recommended Fix*: `Agent(role='...', goal='...', max_iter=10, max_execution_time=300)`
-- **[HIGH] MISSING_LLM_TIMEOUT** at `flo_ai/flo_ai/arium/llm_router.py:64`
-  - *Details*: LLM or API call 'OpenAI()' initialized without an explicit timeout guard (risks thread hanging).
-  - *Recommended Fix*: `OpenAI(..., timeout=30.0)`
-
-#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
-
-```markdown
-Hey rootflo Team 👋
-
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[rootflo/wavefront](https://github.com/rootflo/wavefront)**:
-
-  1. **`MISSING_CIRCUIT_BREAKER`** in `flo_ai/flo_ai/agent/builder.py` (Line 245)
-     - *Impact*: Agent() initialized without 'max_iter' or 'max_execution_time' circuit breaker.
-  2. **`MISSING_LLM_TIMEOUT`** in `flo_ai/flo_ai/arium/llm_router.py` (Line 64)
-     - *Impact*: LLM or API call 'OpenAI()' initialized without an explicit timeout guard (risks thread hanging).
-
-When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
-
-⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=rootflo/wavefront](https://baddevil512.github.io/agent-chaos-monkey/?repo=rootflo/wavefront)
-
-We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
-
-Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
-
-Best,
-Abhay & Agentic Chaos Monkey Team
-```
-
----
-
-### 9. [jagmarques/asqav-sdk](https://github.com/jagmarques/asqav-sdk)
-
-- **Owner / Org Profile**: [jagmarques](https://github.com/jagmarques)
-- **GitHub Stars**: ⭐ 631
-- **Agent Resilience Rating**: Score `55.0/100` (Grade **D**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=jagmarques/asqav-sdk](https://baddevil512.github.io/agent-chaos-monkey/?repo=jagmarques/asqav-sdk)
-
-#### Top Findings:
-- **[MEDIUM] UNHANDLED_JSON_PARSING** at `github-action-risk-acceptance/risk_acceptance.py:227`
-  - *Details*: `json.loads()` called on LLM/tool output without `try-except` exception handling or Pydantic validation.
-  - *Recommended Fix*: `try:
-    data = json.loads(llm_output)
-except json.JSONDecodeError:
-    data = {'fallback': True}`
-- **[MEDIUM] UNHANDLED_JSON_PARSING** at `github-action/test_sign_code_authorship.py:139`
-  - *Details*: `json.loads()` called on LLM/tool output without `try-except` exception handling or Pydantic validation.
-  - *Recommended Fix*: `try:
-    data = json.loads(llm_output)
-except json.JSONDecodeError:
-    data = {'fallback': True}`
-
-#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
-
-```markdown
-Hey jagmarques Team 👋
-
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[jagmarques/asqav-sdk](https://github.com/jagmarques/asqav-sdk)**:
-
-  1. **`UNHANDLED_JSON_PARSING`** in `github-action-risk-acceptance/risk_acceptance.py` (Line 227)
-     - *Impact*: `json.loads()` called on LLM/tool output without `try-except` exception handling or Pydantic validation.
-  2. **`UNHANDLED_JSON_PARSING`** in `github-action/test_sign_code_authorship.py` (Line 139)
-     - *Impact*: `json.loads()` called on LLM/tool output without `try-except` exception handling or Pydantic validation.
-
-When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
-
-⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=jagmarques/asqav-sdk](https://baddevil512.github.io/agent-chaos-monkey/?repo=jagmarques/asqav-sdk)
-
-We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
-
-Feel free to run the free cloud scan above or check out our open-source suite: https://github.com/Baddevil512/agent-chaos-monkey
-
-Best,
-Abhay & Agentic Chaos Monkey Team
-```
-
----
-
-### 10. [AgentSafeLabs/safelabs-eval](https://github.com/AgentSafeLabs/safelabs-eval)
-
-- **Owner / Org Profile**: [AgentSafeLabs](https://github.com/AgentSafeLabs)
-- **GitHub Stars**: ⭐ 488
-- **Agent Resilience Rating**: Score `85.0/100` (Grade **B**)
-- **1-Click Live Scanner Link**: [https://baddevil512.github.io/agent-chaos-monkey/?repo=AgentSafeLabs/safelabs-eval](https://baddevil512.github.io/agent-chaos-monkey/?repo=AgentSafeLabs/safelabs-eval)
-
-#### Top Findings:
-- **[HIGH] MISSING_LLM_TIMEOUT** at `safelabs/agents/http_adapter.py:142`
-  - *Details*: LLM or API call 'post()' initialized without an explicit timeout guard (risks thread hanging).
-  - *Recommended Fix*: `post(..., timeout=30.0)`
-
-#### Ready-to-Copy Founder DM / GitHub Issue Pitch:
-
-```markdown
-Hey AgentSafeLabs Team 👋
-
-We ran an automated static AST reliability audit across active AI agent codebases and noticed a couple of potential production fault traps in **[AgentSafeLabs/safelabs-eval](https://github.com/AgentSafeLabs/safelabs-eval)**:
-
-  1. **`MISSING_LLM_TIMEOUT`** in `safelabs/agents/http_adapter.py` (Line 142)
-     - *Impact*: LLM or API call 'post()' initialized without an explicit timeout guard (risks thread hanging).
-
-When upstream APIs experience rate limits (HTTP 429), gateway drops (HTTP 502), or network latency spikes, these missing circuit breakers can cause unhandled retry cascades and unnecessary token burn.
-
-⚡ **View Live Interactive Audit Dashboard (1-Click Run)**:
-👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=AgentSafeLabs/safelabs-eval](https://baddevil512.github.io/agent-chaos-monkey/?repo=AgentSafeLabs/safelabs-eval)
+👉 [https://baddevil512.github.io/agent-chaos-monkey/?repo=pic-standard/pic-standard](https://baddevil512.github.io/agent-chaos-monkey/?repo=pic-standard/pic-standard)
 
 We built **Agentic Chaos Monkey** to help AI teams inject synthetic production faults during QA and test agent resilience before deploying to production.
 

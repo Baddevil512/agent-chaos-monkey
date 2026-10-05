@@ -9,5 +9,10 @@
   "botextractai/ai-crewai-multi-agent",
   "rootflo/wavefront",
   "jagmarques/asqav-sdk",
-  "AgentSafeLabs/safelabs-eval"
+  "AgentSafeLabs/safelabs-eval",
+  "Grigorij-Dudnik/RoboCrew",
+  "raia-live/amfs",
+  "loopgain-ai/loopgain",
+  "SAP-samples/codejam-code-based-agents",
+  "pic-standard/pic-standard"
 ]

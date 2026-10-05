@@ -30,7 +30,7 @@ jobs:
       - name: Run B2B Outreach Hunter & Dispatch Discord Alerts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1554958090909253652/QYzvHC1yfBnsm-ztyS_qNStcn2NyunMTQxulMCwj_v7HmMoSUgk8HM_wE7Nr90iSJ62e' }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           python outreach_hunter.py
 
