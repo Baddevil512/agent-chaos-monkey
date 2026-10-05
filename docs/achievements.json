@@ -6,6 +6,14 @@
   },
   "achievements": [
     {
+      "id": "ach-007",
+      "title": "Opened Architecture PRs on academic-commercialization-agent (771\u2b50) & agents-shipgate (#967)",
+      "category": "ENGINEERING MILESTONE",
+      "description": "Collaborated with maintainers on shuxiachai/academic-commercialization-agent (#191) to implement wall-clock execution deadlines, and ThreeMoonsLab/agents-shipgate (#917 / PR #967) to ship CrewAI fault-isolation patterns & offline test suites.",
+      "proof_link": "https://github.com/ThreeMoonsLab/agents-shipgate/pull/967",
+      "date": "2026-10-05"
+    },
+    {
       "id": "ach-006",
       "title": "Root Portfolio Website & ATS Resume Release",
       "category": "ENGINEERING MILESTONE",
